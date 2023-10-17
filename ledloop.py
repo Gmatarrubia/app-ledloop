@@ -35,7 +35,7 @@ def main():
 
     LED_DATA_PIN = board.D10
     COUNT_LED = 80
-    ORDER = neopixel.RGB
+    ORDER = neopixel.GRB
     BRIGHTNESS = 0.4
 
     #Socket creation
@@ -46,10 +46,10 @@ def main():
 
     try:
         while True:
-            for pix in pixels:
-                pix = (10, 0, 0)
+            for p in range(0,COUNT_LED):
+                pixels[p] = (0, 40, 0)
                 pixels.show()
-                time.sleep(1)
+                time.sleep(0.5)
 
     except KeyboardInterrupt:
         # Manually stop all active listener threads if you press Ctrl+C
