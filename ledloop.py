@@ -12,10 +12,13 @@ context = zmq.Context()
 
 # Global configuration
 LED_DATA_PIN = board.D10
-COUNT_LED = 80
+LED_DATA_PIN2 = board.D18
+COUNT_LED = 12
+COUNT_LED2 = 6
 ORDER = neopixel.GRB
 BRIGHTNESS = 0.4
 PIXELS = neopixel.NeoPixel(LED_DATA_PIN, COUNT_LED, pixel_order=ORDER, brightness=BRIGHTNESS)
+PIXELS_2 = neopixel.NeoPixel(LED_DATA_PIN2, COUNT_LED, pixel_order=ORDER, brightness=BRIGHTNESS)
 
 def config_socket(socket):
     socket.connect("ipc:///tmp/ledSequence")
@@ -33,6 +36,8 @@ def led_on(event):
         for p in range(0,COUNT_LED):
             PIXELS[p] = (0, 40, 0)
             PIXELS.show()
+            PIXELS_2[p] = (0, 00, 40)
+            PIXELS_2.show()
             time.sleep(0.5)
             if event.is_set():
                 break
@@ -44,7 +49,9 @@ def led_on(event):
 def led_off(event):
     print("led_off")
     PIXELS.fill((0,0,0))
+    PIXELS_2.fill((0,0,0))
     PIXELS.show()
+    PIXELS_2.show()
     event.clear()
     return
 
