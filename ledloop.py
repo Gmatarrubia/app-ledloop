@@ -13,8 +13,8 @@ context = zmq.Context()
 # Global configuration
 LED_DATA_PIN = board.D10
 LED_DATA_PIN2 = board.D18
-COUNT_LED = 12
-COUNT_LED2 = 6
+COUNT_LED = 24
+COUNT_LED2 = 24
 ORDER = neopixel.GRB
 BRIGHTNESS = 0.4
 PIXELS = neopixel.NeoPixel(LED_DATA_PIN, COUNT_LED, pixel_order=ORDER, brightness=BRIGHTNESS)
