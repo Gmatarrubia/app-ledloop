@@ -26,3 +26,20 @@ class FigureLedLine():
     def show(self):
         for line in self.ledLinesList:
             line.neopixel.show()
+
+class TriangleLed(FigureLedLine):
+
+    def __init__(self,line1, line2, line3):
+        super().__init__([line1, line2, line3])
+
+class SquareLed(FigureLedLine):
+
+    def __init__(self,line1, line2, line3, line4):
+        super().__init__([line1, line2, line3, line4])
+
+
+class HexagonLed(FigureLedLine):
+
+    def __init__(self,line1, line2, line3, line4, line5, line6):
+        super().__init__([line1, line2, line3, line4, line5, line6])
+

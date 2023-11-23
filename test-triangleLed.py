@@ -6,7 +6,7 @@ import time
 import board
 import neopixel
 from ledLine import LedLine
-from triangleLed import TriangleLed
+from figureLedLine import TriangleLed
 
 # Global configuration
 LED_DATA_PIN = board.D10
