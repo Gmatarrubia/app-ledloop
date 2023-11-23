@@ -1,3 +1,7 @@
+#!/usr/bin/python3
+# For remote debugging use the following command on target device
+# python3 -m debugpy --listen 192.168.1.43:5678 --wait-for-client ./test-ledSegment.py
+
 import time
 import board
 import neopixel

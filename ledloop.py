@@ -18,7 +18,7 @@ COUNT_LED2 = 24
 ORDER = neopixel.GRB
 BRIGHTNESS = 0.4
 PIXELS = neopixel.NeoPixel(LED_DATA_PIN, COUNT_LED, pixel_order=ORDER, brightness=BRIGHTNESS)
-PIXELS_2 = neopixel.NeoPixel(LED_DATA_PIN2, COUNT_LED, pixel_order=ORDER, brightness=BRIGHTNESS)
+PIXELS_2 = neopixel.NeoPixel(LED_DATA_PIN2, COUNT_LED2, pixel_order=ORDER, brightness=BRIGHTNESS)
 
 def config_socket(socket):
     socket.connect("ipc:///tmp/ledSequence")
