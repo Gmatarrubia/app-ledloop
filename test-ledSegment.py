@@ -23,7 +23,7 @@ def main():
     leds3 =ledSegment(PIXELS, 12, 17)
     print(" Led segment lenght: {}".format(str(leds.lenght)))
 
-    num_loop_cycles = 10
+    num_loop_cycles = 3
     while (num_loop_cycles):
         leds.fill(70,0,0)
         leds2.off()
@@ -41,6 +41,10 @@ def main():
         PIXELS.show()
         time.sleep(0.5)
         num_loop_cycles = num_loop_cycles - 1
+
+    leds.rainbow(0.001)
+    leds2.rainbow(0.001)
+    leds3.rainbow(0.001)
 
 if __name__ == "__main__":
     main()
