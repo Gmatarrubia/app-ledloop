@@ -14,8 +14,8 @@ COUNT_LED = 18
 COUNT_LED2 = 24
 ORDER = neopixel.GRB
 BRIGHTNESS = 0.4
-PIXELS = neopixel.NeoPixel(LED_DATA_PIN, COUNT_LED, pixel_order=ORDER, brightness=BRIGHTNESS)
-PIXELS_2 = neopixel.NeoPixel(LED_DATA_PIN2, COUNT_LED, pixel_order=ORDER, brightness=BRIGHTNESS)
+PIXELS = neopixel.NeoPixel(LED_DATA_PIN, COUNT_LED, pixel_order=RGB, brightness=BRIGHTNESS, auto_write=False)
+PIXELS_2 = neopixel.NeoPixel(LED_DATA_PIN2, COUNT_LED2, pixel_order=RGB, brightness=BRIGHTNESS, auto_write=False)
 
 def main():
     leds = LedLine(PIXELS, 0, 5)
