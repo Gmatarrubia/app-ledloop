@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 # For remote debugging use the following command on target device
-# python3 -m debugpy --listen 192.168.1.43:5678 --wait-for-client ./test-ledSegment.py
+# python3 -m debugpy --listen 192.168.1.43:5678 --wait-for-client ./test-ledLine.py
 
 import time
 import board
 import neopixel
-from ledSegment import ledSegment
+from ledLine import LedLine
 
 # Global configuration
 LED_DATA_PIN = board.D10
@@ -18,9 +18,9 @@ PIXELS = neopixel.NeoPixel(LED_DATA_PIN, COUNT_LED, pixel_order=ORDER, brightnes
 PIXELS_2 = neopixel.NeoPixel(LED_DATA_PIN2, COUNT_LED, pixel_order=ORDER, brightness=BRIGHTNESS)
 
 def main():
-    leds = ledSegment(PIXELS, 0, 5)
-    leds2 =ledSegment(PIXELS, 6, 11)
-    leds3 =ledSegment(PIXELS, 12, 17)
+    leds = LedLine(PIXELS, 0, 5)
+    leds2 =LedLine(PIXELS, 6, 11)
+    leds3 =LedLine(PIXELS, 12, 17)
     print(" Led segment lenght: {}".format(str(leds.lenght)))
 
     num_loop_cycles = 3
