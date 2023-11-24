@@ -1,7 +1,13 @@
 import time
+from enum import IntEnum
 from animationHelpers import wheel
 from ledLine import LedLine
 from globals import *
+
+class Figure(IntEnum):
+    Triangle = 3
+    Square = 4
+    Hexagon = 6
 
 class FigureLedLine():
 
@@ -10,17 +16,21 @@ class FigureLedLine():
         for item in ledLineList:
             if isinstance(item, dict):
             # This is True when the info comes from a json file
+
                 if "ledLinesList" in item.keys():
+                # This is True when the item is another figure,
+                # otherwise it is a single Ledline
                     match len(item["ledLinesList"]):
-                        case 3:
+                        case Figure.Triangle.value:
                             self.ledLinesList.append(TriangleLed(*item["ledLinesList"]))
-                        case 4:
+                        case Figure.Square.value:
                             self.ledLinesList.append(SquareLed(*item["ledLinesList"]))
-                        case 6:
+                        case Figure.Hexagon.value:
                             self.ledLinesList.append(HexagonLed(*item["ledLinesList"]))
                         case _:
                             self.ledLinesList.append(FigureLedLine(*item["ledLinesList"]))
                 else:
+                # The item is single Ledline
                     my_tupla = (item["pixel"], pixelSceneDict[item["pixel"]])
                     self.ledLinesList.append(LedLine(my_tupla, item["first"], item["last"]))
                 continue
