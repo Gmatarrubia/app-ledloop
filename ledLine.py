@@ -3,12 +3,14 @@ from animationHelpers import wheel
 
 class LedLine():
 
-    def __init__(self, tupla_neopixel,first, last):
+    def __init__(self, tupla_neopixel,first, last, reverse=False):
         self.key, self.neopixel = tupla_neopixel
         self.first = first
         self.last = last
-        self.index = range(self.first, self.last + 1)
+        self.index = [*range(self.first, self.last + 1)]
         self.lenght = len(self.index)
+        if reverse:
+            self.index = [*reversed(self.index)]
 
     def fill(self, r, g, b):
         for led in self.index:

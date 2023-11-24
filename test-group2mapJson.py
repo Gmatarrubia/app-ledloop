@@ -2,9 +2,12 @@
 # For remote debugging use the following command on target device
 # python3 -m debugpy --listen 192.168.1.43:5678 --wait-for-client ./test-multi2mapJson.py
 
+import time
 import json
 from ledLine import LedLine
 from figureLedLine import TriangleLed, FigureLedLine
+from figuresDict import FiguresDict
+
 from globals import *
 
 class Led_encoder(json.JSONEncoder):
@@ -21,6 +24,7 @@ class Led_encoder(json.JSONEncoder):
 def main():
     # Single line
     line1 = LedLine(tupla_PIXELS_2, 0, 5)
+    line1_reverse = LedLine(tupla_PIXELS_2, 0, 5, reverse=True)
 
     # Triangle 1
     t1_line1 = LedLine(tupla_PIXELS, 0, 5)
@@ -35,10 +39,18 @@ def main():
     triangleLed_2 = TriangleLed(t2_line1, t2_line2, t2_line3)
 
     # Multi poligon
-    poly = {"complete" : FigureLedLine([line1, triangleLed, triangleLed_2])}
+    complete = FigureLedLine([line1, triangleLed, triangleLed_2])
+    core = FigureLedLine([line1_reverse, t1_line1, t2_line1])
+    figureGroups = FiguresDict({
+                            "complete" : {
+                                "ledLinesList" : [complete],
+                            },
+                            "core" : {
+                                "ledLinesList" : [core],
+                            }})
 
     with open(MAP_JSON_FILE, "w") as json_file:
-        json.dump(poly, json_file, indent=2, cls=Led_encoder)
+        json.dump(figureGroups.figuresDict, json_file, indent=2, cls=Led_encoder)
 
 
 if __name__ == "__main__":

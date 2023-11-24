@@ -1,0 +1,14 @@
+{
+  "complete": {
+    "mode": "fill",
+    "args":
+      {
+        "r": 0,
+        "g": 0,
+        "b": 100
+      }
+  },
+  "core": {
+    "mode": "off"
+  }
+}

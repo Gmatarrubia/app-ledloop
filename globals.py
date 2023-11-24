@@ -28,7 +28,11 @@ def update_all():
         pixel.show()
 
 # Json utils
-JSON_FILE = "led-map.json"
-def load_json():
-    with open(JSON_FILE, "r") as f:
+MAP_JSON_FILE = "led-map.json"
+WORK_MODE_JSON_FILE = "work-mode.json"
+def load_map_json():
+    with open(MAP_JSON_FILE, "r") as f:
+        return json.load(f)
+def load_mode_json():
+    with open(WORK_MODE_JSON_FILE, "r") as f:
         return json.load(f)
