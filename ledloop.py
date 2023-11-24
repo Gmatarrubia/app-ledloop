@@ -1,16 +1,12 @@
 #!/usr/bin/python3
 
+# python3 -m debugpy --listen 192.168.1.43:5678 --wait-for-client ./ledloop.py
+
 import time
 import threading
-import socket
-import os
-import zmq
+from figuresDict import FiguresDict
 from globals import *
-context = zmq.Context()
 
-def config_socket(socket):
-    socket.connect("ipc:///tmp/ledSequence")
-    socket.setsockopt_string(zmq.SUBSCRIBE, "ledsequence")
 
 def config_thread(target_function, event):
     target_args = [event]
@@ -18,65 +14,43 @@ def config_thread(target_function, event):
     thread.daemon = True  # Set the thread as a daemon so it exits when the main program exits
     return thread
 
-def led_on(event):
-    print("led_on")
-    while True:
-        for p in range(0,COUNT_LED):
-            PIXELS[p] = (0, 40, 0)
-            PIXELS.show()
-            PIXELS_2[p] = (0, 00, 40)
-            PIXELS_2.show()
-            time.sleep(0.5)
-            if event.is_set():
-                break
-        if event.is_set():
-            break
-    event.clear()
-    return
-
-def led_off(event):
-    print("led_off")
-    PIXELS.fill((0,0,0))
-    PIXELS_2.fill((0,0,0))
-    PIXELS.show()
-    PIXELS_2.show()
-    event.clear()
-    return
-
-
 def main():
 
-    # Socket creation
-    inputSocket = context.socket(zmq.SUB)
-    config_socket(inputSocket)
+    led_map_json = load_map_json()
+    work_mode_json = load_mode_json()
+    figuresDict = FiguresDict(led_map_json)
+    myFigures = figuresDict.figuresDict
+
+    # Start with last configuraton (from json)
+    myFigures["complete"].mode(work_mode_json["complete"])
+    myFigures["core"].mode(work_mode_json["core"])
+    update_all()
+
+    def switch_on_core():
+        myFigures["core"].fill(0,90,20)
+        update_all()
+
+    def switch_off_core():
+        myFigures["core"].fill(0,0,0)
+        update_all()
+
 
     # Change sequence event (aka killing event)
-    change_sec = threading.Event()
+    #change_sec = threading.Event()
 
-    leds_thread = config_thread(led_on, change_sec)
-    leds_thread.start()
-    print("hey dude")
+    #leds_thread = config_thread(switch_off_core, change_sec)
+
+    # Test de luces
+    loop_cycles = 5
+    for cycles in range(loop_cycles):
+        switch_on_core()
+        time.sleep(1)
+        switch_off_core()
+        time.sleep(1)
+
     try:
         while True:
-            print("something")
-            message = inputSocket.recv_string()
-            topic , value = message.split(' ')
-            print(f"topic: {topic} , value: {value}")
-
-            def kill_led_thread():
-                if leds_thread.is_alive():
-                    change_sec.set()
-                    leds_thread.join()
-
-            if topic == "ledsequence":
-                if value == "on":
-                    kill_led_thread()
-                    leds_thread = config_thread(led_on, change_sec)
-                    leds_thread.start()
-                elif value == "off":
-                    kill_led_thread()
-                    leds_thread = config_thread(led_off, change_sec)
-                    leds_thread.start()
+            time.sleep(0.5)
 
     except KeyboardInterrupt:
         # Manually stop all active listener threads if you press Ctrl+C

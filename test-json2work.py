@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# python3 -m debugpy --listen 192.168.1.43:5678 --wait-for-client ./test-mapJson.py
+# python3 -m debugpy --listen 192.168.1.43:5678 --wait-for-client ./test-json2work.py
 
 import time
 from figuresDict import FiguresDict
