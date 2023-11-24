@@ -1,6 +1,9 @@
+import os
 import json
 import board
 import neopixel
+
+APP_PATH = os.path.dirname(os.path.realpath(__file__))
 
 # Global configuration
 LED_DATA_PIN = board.D10
@@ -28,8 +31,8 @@ def update_all():
         pixel.show()
 
 # Json utils
-MAP_JSON_FILE = "led-map.json"
-WORK_MODE_JSON_FILE = "work-mode.json"
+MAP_JSON_FILE = os.path.join(APP_PATH,"led-map.json")
+WORK_MODE_JSON_FILE = os.path.join(APP_PATH,"work-mode.json")
 def load_map_json():
     with open(MAP_JSON_FILE, "r") as f:
         return json.load(f)

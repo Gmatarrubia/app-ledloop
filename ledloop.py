@@ -8,7 +8,6 @@ import threading
 from figuresDict import FiguresDict
 from globals import *
 
-
 def config_thread(target_function, event):
     target_args = [event]
     thread = threading.Thread(target=target_function, args=(target_args))
