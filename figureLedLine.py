@@ -55,6 +55,19 @@ class FigureLedLine():
         for line in self.ledLinesList:
             line.neopixel.show()
 
+    def mode(self, work_mode):
+        match work_mode["mode"]:
+            case "fill":
+                color = (work_mode["args"]["r"],
+                         work_mode["args"]["g"],
+                         work_mode["args"]["b"])
+                self.fill(*color)
+            case "off":
+                self.off()
+            case _:
+                raise Exception("Unknown mode")
+
+
 class TriangleLed(FigureLedLine):
     def __init__(self,*args):
         if len(args) != 3:
