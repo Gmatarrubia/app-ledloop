@@ -7,6 +7,17 @@ from ledLine import LedLine
 from figureLedLine import TriangleLed, FigureLedLine
 from globals import *
 
+class Led_encoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, LedLine):
+            return {
+                "pixel" : obj.key,
+                "first": obj.first,
+                "last": obj.last}
+        if isinstance(obj, FigureLedLine):
+            return {"ledLinesList" : obj.ledLinesList}
+        return super().default(obj)
+
 def main():
     # Single line
     line1 = LedLine(tupla_PIXELS_2, 0, 5)
@@ -26,7 +37,7 @@ def main():
     # Multi poligon
     poly = FigureLedLine([line1, triangleLed, triangleLed_2])
 
-    with open("output.json", "w") as json_file:
+    with open(JSON_FILE, "w") as json_file:
         json.dump(poly, json_file, indent=2, cls=Led_encoder)
 
 

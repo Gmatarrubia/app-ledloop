@@ -1,8 +1,6 @@
 import json
 import board
 import neopixel
-from figureLedLine import FigureLedLine, TriangleLed
-from ledLine import LedLine
 
 # Global configuration
 LED_DATA_PIN = board.D10
@@ -29,13 +27,8 @@ def update_all():
     for pixel in pixelSceneList:
         pixel.show()
 
-class Led_encoder(json.JSONEncoder):
-    def default(self, obj):
-        if isinstance(obj, LedLine):
-            return {
-                "pixel" : obj.key,
-                "first": obj.first,
-                "last": obj.last}
-        if isinstance(obj, FigureLedLine):
-            return {"ledLinesList" : obj.ledLinesList}
-        return super().default(obj)
+# Json utils
+JSON_FILE = "led-map.json"
+def load_json():
+    with open(JSON_FILE, "r") as f:
+        return json.load(f)

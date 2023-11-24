@@ -1,10 +1,23 @@
 import time
 from animationHelpers import wheel
+from ledLine import LedLine
+from globals import *
 
 class FigureLedLine():
 
     def __init__(self, ledLineList):
-        self.ledLinesList = ledLineList
+        self.ledLinesList = []
+        for item in ledLineList:
+            if isinstance(item, dict):
+            # This is True when the info comes from a json file
+                if "ledLinesList" in item.keys():
+                    self.ledLinesList.append(FigureLedLine(item["ledLinesList"]))
+                else:
+                    my_tupla = (item["pixel"], pixelSceneDict[item["pixel"]])
+                    self.ledLinesList.append(LedLine(my_tupla, item["first"], item["last"]))
+                continue
+            # Direct append for non json info
+            self.ledLinesList.append(item)
         self.lenght = len(self.ledLinesList)
 
     def fill(self, r, g, b):
