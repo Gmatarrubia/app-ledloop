@@ -11,7 +11,15 @@ class FigureLedLine():
             if isinstance(item, dict):
             # This is True when the info comes from a json file
                 if "ledLinesList" in item.keys():
-                    self.ledLinesList.append(FigureLedLine(item["ledLinesList"]))
+                    match len(item["ledLinesList"]):
+                        case 3:
+                            self.ledLinesList.append(TriangleLed(*item["ledLinesList"]))
+                        case 4:
+                            self.ledLinesList.append(SquareLed(*item["ledLinesList"]))
+                        case 6:
+                            self.ledLinesList.append(HexagonLed(*item["ledLinesList"]))
+                        case _:
+                            self.ledLinesList.append(FigureLedLine(*item["ledLinesList"]))
                 else:
                     my_tupla = (item["pixel"], pixelSceneDict[item["pixel"]])
                     self.ledLinesList.append(LedLine(my_tupla, item["first"], item["last"]))
@@ -38,18 +46,21 @@ class FigureLedLine():
             line.neopixel.show()
 
 class TriangleLed(FigureLedLine):
-
-    def __init__(self,line1, line2, line3):
-        super().__init__([line1, line2, line3])
+    def __init__(self,*args):
+        if len(args) != 3:
+                raise Exception("Triangle must have 3 elements")
+        super().__init__(args)
 
 class SquareLed(FigureLedLine):
-
-    def __init__(self,line1, line2, line3, line4):
-        super().__init__([line1, line2, line3, line4])
+    def __init__(self,*args):
+        if len(args) != 4:
+                raise Exception("Triangle must have 3 elements")
+        super().__init__(args)
 
 
 class HexagonLed(FigureLedLine):
-
-    def __init__(self,line1, line2, line3, line4, line5, line6):
-        super().__init__([line1, line2, line3, line4, line5, line6])
+    def __init__(self,*args):
+        if len(args) != 6:
+                raise Exception("Triangle must have 3 elements")
+        super().__init__(args)
 

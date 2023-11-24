@@ -12,15 +12,15 @@ def main():
 
     num_loop_cycles = 10
     while (num_loop_cycles):
-        poly.fill(0,0,100)
-        update_all()
-        time.sleep(0.4)
-
-        poly.fill(100,0,0)
-        update_all()
-        time.sleep(0.4)
+        for item in poly.ledLinesList:
+            poly.fill(0,0,0)
+            item.fill(50,50,50)
+            update_all()
+            time.sleep(0.4)
 
         num_loop_cycles = num_loop_cycles - 1
+    poly.fill(50,50,50)
+    update_all()
 
 
 if __name__ == "__main__":
