@@ -3,8 +3,8 @@ from animationHelpers import wheel
 
 class LedLine():
 
-    def __init__(self, neopixel,first, last):
-        self.neopixel = neopixel
+    def __init__(self, tupla_neopixel,first, last):
+        self.key, self.neopixel = tupla_neopixel
         self.first = first
         self.last = last
         self.index = range(self.first, self.last + 1)

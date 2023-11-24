@@ -16,11 +16,8 @@ class FigureLedLine():
             line.fill(0, 0, 0)
 
     def rainbow(self, wait):
-        for j in range(255):
-            for i in self.index:
-                pixel_index = (i * 256 // self.lenght) + j
-                self.neopixel[i] = wheel(self.neopixel.byteorder, pixel_index & 255)
-            self.show()
+        for line in self.ledLinesList:
+            line.rainbow()
             time.sleep(wait)
 
     def show(self):

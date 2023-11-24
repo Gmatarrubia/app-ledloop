@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 # For remote debugging use the following command on target device
-# python3 -m debugpy --listen 192.168.1.43:5678 --wait-for-client ./test-ledSegment.py
+# python3 -m debugpy --listen 192.168.1.43:5678 --wait-for-client ./test-multi2mapJson.py
 
-import time
+import json
 from ledLine import LedLine
 from figureLedLine import TriangleLed, FigureLedLine
 from globals import *
@@ -13,8 +13,8 @@ def main():
 
     # Triangle 1
     t1_line1 = LedLine(tupla_PIXELS, 0, 5)
-    t1_line2 =LedLine(tupla_PIXELS, 6, 11)
-    t1_line3 =LedLine(tupla_PIXELS, 12, 17)
+    t1_line2 = LedLine(tupla_PIXELS, 6, 11)
+    t1_line3 = LedLine(tupla_PIXELS, 12, 17)
     triangleLed = TriangleLed(t1_line1, t1_line2, t1_line3)
 
     # Triangle 2
@@ -26,17 +26,9 @@ def main():
     # Multi poligon
     poly = FigureLedLine([line1, triangleLed, triangleLed_2])
 
-    num_loop_cycles = 10
-    while (num_loop_cycles):
-        poly.fill(0,0,100)
-        update_all()
-        time.sleep(0.1)
+    with open("output.json", "w") as json_file:
+        json.dump(poly, json_file, indent=2, cls=Led_encoder)
 
-        poly.fill(100,0,0)
-        update_all()
-        time.sleep(0.1)
-
-        num_loop_cycles = num_loop_cycles - 1
 
 if __name__ == "__main__":
     main()
