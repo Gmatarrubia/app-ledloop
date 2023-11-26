@@ -45,9 +45,6 @@ def main():
         myFigures["core"].fill(0,0,0)
         update_all()
 
-    # Initial mode work
-    update_mode_work()
-
     # Test led lights
     loop_cycles = 5
     for cycles in range(loop_cycles):
@@ -55,6 +52,9 @@ def main():
         time.sleep(0.4)
         switch_off_core()
         time.sleep(0.4)
+
+    # Initial mode work
+    update_mode_work()
 
     try:
         lastMd5sum = calculate_md5(WORK_MODE_JSON_FILE)
