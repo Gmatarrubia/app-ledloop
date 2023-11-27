@@ -2,7 +2,7 @@
 
 # python3 -m debugpy --listen 192.168.1.43:5678 --wait-for-client ./ledloop.py
 
-import hashlib
+import os
 import time
 import threading
 from figuresDict import FiguresDict
@@ -13,14 +13,6 @@ def config_thread(target_function, event):
     thread = threading.Thread(target=target_function, args=(target_args))
     thread.daemon = True  # Set the thread as a daemon so it exits when the main program exits
     return thread
-
-def calculate_md5(file_path):
-    md5 = hashlib.md5()
-    with open(file_path, 'rb') as file:
-        # Read the file in chunks to avoid loading the entire file into memory
-        for chunk in iter(lambda: file.read(4096), b''):
-            md5.update(chunk)
-    return md5.hexdigest()
 
 def main():
 
@@ -57,16 +49,17 @@ def main():
     update_mode_work()
 
     try:
-        lastMd5sum = calculate_md5(WORK_MODE_JSON_FILE)
-        currentMd5sum = lastMd5sum
-        print(str(lastMd5sum))
+        lastModTime = os.stat(WORK_MODE_JSON_FILE).st_mtime
+        currentModTime = lastModTime
+        print(str(lastModTime))
         while True:
-            currentMd5sum = calculate_md5(WORK_MODE_JSON_FILE)
-            if (currentMd5sum == lastMd5sum):
+            time.sleep(0.01)
+            currentModTime = os.stat(WORK_MODE_JSON_FILE).st_mtime
+            if (currentModTime == lastModTime):
                 continue
-            lastMd5sum = currentMd5sum
+            lastModTime = currentModTime
             update_mode_work()
-            time.sleep(0.5)
+
 
     except KeyboardInterrupt:
         # Manually stop all active listener threads if you press Ctrl+C
