@@ -57,6 +57,7 @@ def main():
             currentModTime = os.stat(WORK_MODE_JSON_FILE).st_mtime
             if (currentModTime == lastModTime):
                 continue
+            time.sleep(0.5)
             lastModTime = currentModTime
             update_mode_work()
 
