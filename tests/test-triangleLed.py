@@ -2,7 +2,15 @@
 # For remote debugging use the following command on target device
 # python3 -m debugpy --listen 192.168.1.43:5678 --wait-for-client ./test-ledSegment.py
 
+import os
+import sys
 import time
+
+current = os.path.dirname(os.path.realpath(__file__))
+parent = os.path.dirname(current)
+# adding the parent directory to the sys.path.
+sys.path.append(parent)
+
 from ledLine import LedLine
 from figureLedLine import TriangleLed
 from globals import *

@@ -2,9 +2,18 @@
 
 # python3 -m debugpy --listen 192.168.1.43:5678 --wait-for-client ./test-mapJson.py
 
+import sys
+import os
 import time
-from figuresDict import FiguresDict
+
+current = os.path.dirname(os.path.realpath(__file__))
+parent = os.path.dirname(current)
+# adding the parent directory to the sys.path.
+sys.path.append(parent)
+
+
 from globals import *
+from figuresDict import FiguresDict
 
 def main():
     led_map_json = load_map_json()

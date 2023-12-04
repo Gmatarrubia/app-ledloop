@@ -2,7 +2,15 @@
 
 # python3 -m debugpy --listen 192.168.1.43:5678 --wait-for-client ./test-json2work.py
 
+import os
 import time
+import sys
+
+current = os.path.dirname(os.path.realpath(__file__))
+parent = os.path.dirname(current)
+# adding the parent directory to the sys.path.
+sys.path.append(parent)
+
 from figuresDict import FiguresDict
 from globals import *
 
