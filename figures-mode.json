@@ -1,0 +1,43 @@
+{
+  "complete": {
+    "fill":
+    {
+      "nargs": 1,
+      "args": [
+        "color"
+      ]
+    },
+    "off": {
+      "nargs": 0,
+      "args": []
+    },
+    "snake": {
+      "nargs": 3,
+      "args": [
+        "Color",
+        "Color",
+        "speed"
+      ]
+    }
+  },
+  "core": {
+    "fill":
+    {
+      "nargs": 1,
+      "args": [
+        "color"
+      ]
+    },
+    "off": {
+      "nargs": 0,
+      "args": []
+    },
+    "pulse": {
+      "nargs": 3,
+      "args": [
+        "Color",
+        "speed"
+      ]
+    }
+  }
+}
