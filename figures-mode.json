@@ -1,17 +1,19 @@
 {
-  "complete": {
-    "fill":
+  "complete": [
     {
+      "name" : "fill",
       "nargs": 1,
       "args": [
         "color"
       ]
     },
-    "off": {
+    {
+      "name": "off",
       "nargs": 0,
       "args": []
     },
-    "snake": {
+    {
+      "name": "snake",
       "nargs": 3,
       "args": [
         "Color",
@@ -19,25 +21,27 @@
         "speed"
       ]
     }
-  },
-  "core": {
-    "fill":
+  ],
+  "core": [
     {
+      "name": "fill",
       "nargs": 1,
       "args": [
         "color"
       ]
     },
-    "off": {
+    {
+      "name": "off",
       "nargs": 0,
       "args": []
     },
-    "pulse": {
+    {
+      "name": "pulse",
       "nargs": 3,
       "args": [
         "Color",
         "speed"
       ]
     }
-  }
+  ]
 }
