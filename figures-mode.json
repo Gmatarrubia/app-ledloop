@@ -17,12 +17,8 @@
         },
         {
           "name": "snake",
-          "nargs": 3,
-          "args": [
-            "Color",
-            "Color",
-            "speed"
-          ]
+          "nargs": 0,
+          "args": []
         },
         {
           "name": "rainbow",

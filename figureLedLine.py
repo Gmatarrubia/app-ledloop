@@ -53,6 +53,10 @@ class FigureLedLine(threading.Thread):
         for line in self.ledLinesList:
             line.fill(0, 0, 0)
 
+    def snake(self, wait):
+        for line in self.ledLinesList:
+            line.snake(wait)
+
     def rainbow(self, wait):
         for line in self.ledLinesList:
             line.rainbow(wait)
@@ -76,6 +80,8 @@ class FigureLedLine(threading.Thread):
                     self.off()
                 case "rainbow":
                     self.rainbow(0.001)
+                case "snake":
+                    self.snake(0.1)
                 case _:
                     time.sleep(0.3)
 

@@ -4,15 +4,8 @@
 
 import os
 import time
-import threading
 from figuresDict import FiguresDict
 from globals import *
-
-def config_thread(target_function, event):
-    target_args = [event]
-    thread = threading.Thread(target=target_function, args=(target_args))
-    thread.daemon = True  # Set the thread as a daemon so it exits when the main program exits
-    return thread
 
 def main():
 
@@ -22,14 +15,16 @@ def main():
 
     def update_mode_work():
         print("Updating mode work...")
-        # Start with last configuraton (from json)
+        # Read new json values
         work_mode_json = load_mode_json()
         myFigures["complete"].mode(work_mode_json["complete"])
         myFigures["core"].mode(work_mode_json["core"])
+        print("Succesfuly mode work updated.")
+
+    def run_figures():
+        #Start thread again
         myFigures["complete"].start()
         myFigures["core"].start()
-        update_all()
-        print("Succesfuly mode work updated.")
 
     def switch_on_core():
         myFigures["core"].fill(0,90,20)
@@ -49,6 +44,8 @@ def main():
 
     # Initial mode work
     update_mode_work()
+    # Start runnning figures
+    run_figures()
 
     try:
         lastModTime = os.stat(WORK_MODE_JSON_FILE).st_mtime
@@ -63,7 +60,6 @@ def main():
             time.sleep(0.5)
             lastModTime = currentModTime
             update_mode_work()
-
 
     except KeyboardInterrupt:
         # Manually stop all active listener threads if you press Ctrl+C

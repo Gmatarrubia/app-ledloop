@@ -26,5 +26,11 @@ class LedLine():
                 self.neopixel[i] = wheel(self.neopixel.byteorder, pixel_index & 255)
             time.sleep(wait)
 
+    def snake(self, wait):
+        for led in self.index:
+            self.off()
+            self.neopixel[led] = (100,100,100)
+            wait.sleep(wait)
+
     def show(self):
         self.neopixel.show()
