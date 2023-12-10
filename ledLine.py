@@ -30,7 +30,7 @@ class LedLine():
         for led in self.index:
             self.off()
             self.neopixel[led] = (100,100,100)
-            wait.sleep(wait)
+            time.sleep(wait)
 
     def show(self):
         self.neopixel.show()
