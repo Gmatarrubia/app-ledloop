@@ -26,6 +26,8 @@ def main():
         work_mode_json = load_mode_json()
         myFigures["complete"].mode(work_mode_json["complete"])
         myFigures["core"].mode(work_mode_json["core"])
+        myFigures["complete"].start()
+        myFigures["core"].start()
         update_all()
         print("Succesfuly mode work updated.")
 
@@ -56,6 +58,7 @@ def main():
             time.sleep(0.01)
             currentModTime = os.stat(WORK_MODE_JSON_FILE).st_mtime
             if (currentModTime == lastModTime):
+                update_all()
                 continue
             time.sleep(0.5)
             lastModTime = currentModTime

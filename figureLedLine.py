@@ -1,4 +1,5 @@
 import time
+import threading
 from enum import IntEnum
 from animationHelpers import wheel
 from ledLine import LedLine
@@ -9,10 +10,11 @@ class Figure(IntEnum):
     Square = 4
     Hexagon = 6
 
-class FigureLedLine():
+class FigureLedLine(threading.Thread):
 
     def __init__(self, ledLineList):
         self.ledLinesList = []
+        self.activeMode = ""
         for item in ledLineList:
             if isinstance(item, dict):
             # This is True when the info comes from a json file
@@ -37,6 +39,8 @@ class FigureLedLine():
             # Direct append for non json info
             self.ledLinesList.append(item)
         self.lenght = len(self.ledLinesList)
+        threading.Thread.__init__(self)
+        threading.Thread.daemon = True
 
     def fill(self, r, g, b):
         for line in self.ledLinesList:
@@ -47,25 +51,38 @@ class FigureLedLine():
             line.fill(0, 0, 0)
 
     def rainbow(self, wait):
+        pixels = []
         for line in self.ledLinesList:
-            line.rainbow()
-            time.sleep(wait)
+            for pix in line.index:
+                pixels.append(pix)
+            for j in range(255):
+                for i in pixels:
+                    pixel_index = (i * 256 // len(pixels)) + j
+                    line.neopixel[i] = wheel(line.neopixel.byteorder, pixel_index & 255)
+                    time.sleep(wait)
 
     def show(self):
         for line in self.ledLinesList:
             line.neopixel.show()
 
     def mode(self, work_mode):
-        match work_mode["mode"]:
-            case "fill":
-                color = (work_mode["args"]["r"],
-                         work_mode["args"]["g"],
-                         work_mode["args"]["b"])
-                self.fill(*color)
-            case "off":
-                self.off()
-            case _:
-                raise Exception("Unknown mode")
+        self.activeMode = work_mode["mode"]
+
+    def run(self):
+        while (True):
+            match self.activeMode:
+                case "fill":
+                    color = (work_mode["args"]["r"],
+                            work_mode["args"]["g"],
+                            work_mode["args"]["b"])
+                    self.fill(*color)
+                case "off":
+                    self.off()
+                case "rainbow":
+                    self.rainbow(0.001)
+                case _:
+                    time.sleep(0.3)
+                    continue
 
 
 class TriangleLed(FigureLedLine):

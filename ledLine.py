@@ -24,7 +24,6 @@ class LedLine():
             for i in self.index:
                 pixel_index = (i * 256 // self.lenght) + j
                 self.neopixel[i] = wheel(self.neopixel.byteorder, pixel_index & 255)
-            self.show()
             time.sleep(wait)
 
     def show(self):

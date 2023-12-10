@@ -1,46 +1,59 @@
 {
-  "complete": [
+  "figures": [
     {
-      "name" : "fill",
-      "nargs": 1,
-      "args": [
-        "color"
+      "name": "complete",
+      "modes": [
+        {
+          "name": "fill",
+          "nargs": 1,
+          "args": [
+            "Color"
+          ]
+        },
+        {
+          "name": "off",
+          "nargs": 0,
+          "args": []
+        },
+        {
+          "name": "snake",
+          "nargs": 3,
+          "args": [
+            "Color",
+            "Color",
+            "speed"
+          ]
+        },
+        {
+          "name": "rainbow",
+          "nargs": 0,
+          "args": []
+        }
       ]
     },
     {
-      "name": "off",
-      "nargs": 0,
-      "args": []
-    },
-    {
-      "name": "snake",
-      "nargs": 3,
-      "args": [
-        "Color",
-        "Color",
-        "speed"
-      ]
-    }
-  ],
-  "core": [
-    {
-      "name": "fill",
-      "nargs": 1,
-      "args": [
-        "color"
-      ]
-    },
-    {
-      "name": "off",
-      "nargs": 0,
-      "args": []
-    },
-    {
-      "name": "pulse",
-      "nargs": 3,
-      "args": [
-        "Color",
-        "speed"
+      "name": "core",
+      "modes": [
+        {
+          "name": "fill",
+          "nargs": 1,
+          "args": [
+            "color"
+          ]
+        },
+        {
+          "name": "off",
+          "nargs": 0,
+          "args": []
+        },
+        {
+          "name": "pulse",
+          "nargs": 3,
+          "args": [
+            "Color",
+            "speed"
+          ]
+        }
       ]
     }
   ]

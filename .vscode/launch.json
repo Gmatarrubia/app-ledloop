@@ -9,13 +9,13 @@
             "type": "python",
             "request": "attach",
             "connect": {
-                "host": "192.168.1.43",
+                "host": "192.168.1.34",
                 "port": 5678
             },
             "pathMappings": [
                 {
                     "localRoot": "${workspaceFolder}",
-                    "remoteRoot": "/home/root/"
+                    "remoteRoot": "/home/ledloop/app-ledloop/"
                 }
             ],
             "justMyCode": false
