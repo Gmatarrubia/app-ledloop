@@ -43,6 +43,11 @@
           "args": []
         },
         {
+          "name": "rainbow",
+          "nargs": 0,
+          "args": []
+        },
+        {
           "name": "pulse",
           "nargs": 3,
           "args": [
