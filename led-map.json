@@ -2,32 +2,24 @@
   "complete": {
     "ledLinesList": [
       {
-        "ledLinesList": [
-          {
-            "pixel": "PIXELS",
-            "first": 6,
-            "last": 11
-          },
-          {
-            "pixel": "PIXELS",
-            "first": 12,
-            "last": 17
-          }
-        ]
+        "pixel": "PIXELS",
+        "first": 6,
+        "last": 11
       },
       {
-        "ledLinesList": [
-          {
-            "pixel": "PIXELS_2",
-            "first": 12,
-            "last": 17
-          },
-          {
-            "pixel": "PIXELS_2",
-            "first": 18,
-            "last": 23
-          }
-        ]
+        "pixel": "PIXELS",
+        "first": 12,
+        "last": 17
+      },
+      {
+        "pixel": "PIXELS_2",
+        "first": 23,
+        "last": 18
+      },
+      {
+        "pixel": "PIXELS_2",
+        "first": 17,
+        "last": 12
       }
     ]
   },

@@ -15,35 +15,33 @@ class FigureLedLine(threading.Thread):
 
     def __init__(self, ledLineList):
         self.ledLinesList = []
+        self.indexPlain = []
         self.activeMode = ""
         for item in ledLineList:
             if isinstance(item, dict):
             # This is True when the info comes from a json file
-
-                if "ledLinesList" in item.keys():
-                # This is True when the item is another figure,
-                # otherwise it is a single Ledline
-                    match len(item["ledLinesList"]):
-                        case Figure.Corner.value:
-                            self.ledLinesList.append(CornerLed(*item["ledLinesList"]))
-                        case Figure.Triangle.value:
-                            self.ledLinesList.append(TriangleLed(*item["ledLinesList"]))
-                        case Figure.Square.value:
-                            self.ledLinesList.append(SquareLed(*item["ledLinesList"]))
-                        case Figure.Hexagon.value:
-                            self.ledLinesList.append(HexagonLed(*item["ledLinesList"]))
-                        case _:
-                            self.ledLinesList.append(FigureLedLine(*item["ledLinesList"]))
-                else:
                 # The item is single Ledline
-                    my_tupla = (item["pixel"], pixelSceneDict[item["pixel"]])
+                my_tupla = (item["pixel"], pixelSceneDict[item["pixel"]])
+                if int(item["first"]) < int(item["last"]):
                     self.ledLinesList.append(LedLine(my_tupla, item["first"], item["last"]))
+                else:
+                    self.ledLinesList.append(LedLine(my_tupla, item["last"], item["first"], True))
                 continue
             # Direct append for non json info
             self.ledLinesList.append(item)
         self.lenght = len(self.ledLinesList)
         threading.Thread.__init__(self)
         threading.Thread.daemon = True
+        #self.indexPlain = self.getIndexPlain()
+        self.getIndexPlain()
+
+    def getIndexPlain(self):
+        for line in self.ledLinesList:
+            for num in line.index:
+                counter = 0
+                self.indexPlain.append((counter, num, line, line.key))
+                counter = counter + 1
+        return
 
     def fill(self, r, g, b):
         for line in self.ledLinesList:
@@ -54,12 +52,23 @@ class FigureLedLine(threading.Thread):
             line.fill(0, 0, 0)
 
     def snake(self, wait):
-        for line in self.ledLinesList:
-            line.snake(wait)
+        for pix in self.indexPlain:
+            self.off()
+            pix[2].neopixel[pix[1]] = (100,100,100)
+            time.sleep(wait)
+        for pix in reversed(self.indexPlain):
+            self.off()
+            pix[2].neopixel[pix[1]] = (100,100,100)
+            time.sleep(wait)
 
     def rainbow(self, wait):
-        for line in self.ledLinesList:
-            line.rainbow(wait)
+        #for line in self.ledLinesList:
+        #    line.rainbow(wait)
+        for j in range(255):
+            for pix in self.indexPlain:
+                pixel_index = (pix[0] * 256 // len(self.indexPlain)) + j
+                pix[2].neopixel[pix[1]] = wheel(pix[2].neopixel.byteorder, pixel_index & 255)
+            time.sleep(wait)
 
     def show(self):
         for line in self.ledLinesList:
@@ -81,32 +90,8 @@ class FigureLedLine(threading.Thread):
                 case "rainbow":
                     self.rainbow(0.001)
                 case "snake":
-                    self.snake(0.1)
+                    self.snake(0.02)
                 case _:
                     time.sleep(0.3)
 
-class CornerLed(FigureLedLine):
-    def __init__(self,*args):
-        if len(args) != 2:
-                raise Exception("Triangle must have 3 elements")
-        super().__init__(args)
-
-class TriangleLed(FigureLedLine):
-    def __init__(self,*args):
-        if len(args) != 3:
-                raise Exception("Triangle must have 3 elements")
-        super().__init__(args)
-
-class SquareLed(FigureLedLine):
-    def __init__(self,*args):
-        if len(args) != 4:
-                raise Exception("Triangle must have 3 elements")
-        super().__init__(args)
-
-
-class HexagonLed(FigureLedLine):
-    def __init__(self,*args):
-        if len(args) != 6:
-                raise Exception("Triangle must have 3 elements")
-        super().__init__(args)
 
