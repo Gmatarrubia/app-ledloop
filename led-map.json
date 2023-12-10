@@ -2,17 +2,7 @@
   "complete": {
     "ledLinesList": [
       {
-        "pixel": "PIXELS_2",
-        "first": 0,
-        "last": 5
-      },
-      {
         "ledLinesList": [
-          {
-            "pixel": "PIXELS",
-            "first": 0,
-            "last": 5
-          },
           {
             "pixel": "PIXELS",
             "first": 6,
@@ -27,11 +17,6 @@
       },
       {
         "ledLinesList": [
-          {
-            "pixel": "PIXELS_2",
-            "first": 6,
-            "last": 11
-          },
           {
             "pixel": "PIXELS_2",
             "first": 12,

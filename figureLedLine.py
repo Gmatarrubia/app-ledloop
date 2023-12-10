@@ -6,6 +6,7 @@ from ledLine import LedLine
 from globals import *
 
 class Figure(IntEnum):
+    Corner = 2
     Triangle = 3
     Square = 4
     Hexagon = 6
@@ -23,6 +24,8 @@ class FigureLedLine(threading.Thread):
                 # This is True when the item is another figure,
                 # otherwise it is a single Ledline
                     match len(item["ledLinesList"]):
+                        case Figure.Corner.value:
+                            self.ledLinesList.append(CornerLed(*item["ledLinesList"]))
                         case Figure.Triangle.value:
                             self.ledLinesList.append(TriangleLed(*item["ledLinesList"]))
                         case Figure.Square.value:
@@ -51,30 +54,23 @@ class FigureLedLine(threading.Thread):
             line.fill(0, 0, 0)
 
     def rainbow(self, wait):
-        pixels = []
         for line in self.ledLinesList:
-            for pix in line.index:
-                pixels.append(pix)
-            for j in range(255):
-                for i in pixels:
-                    pixel_index = (i * 256 // len(pixels)) + j
-                    line.neopixel[i] = wheel(line.neopixel.byteorder, pixel_index & 255)
-                    time.sleep(wait)
+            line.rainbow(wait)
 
     def show(self):
         for line in self.ledLinesList:
             line.neopixel.show()
 
     def mode(self, work_mode):
-        self.activeMode = work_mode["mode"]
+        self.activeMode = work_mode
 
     def run(self):
-        while (True):
-            match self.activeMode:
+        while True:
+            match self.activeMode["mode"]:
                 case "fill":
-                    color = (work_mode["args"]["r"],
-                            work_mode["args"]["g"],
-                            work_mode["args"]["b"])
+                    color = (self.activeMode["args"]["r"],
+                            self.activeMode["args"]["g"],
+                            self.activeMode["args"]["b"])
                     self.fill(*color)
                 case "off":
                     self.off()
@@ -82,8 +78,12 @@ class FigureLedLine(threading.Thread):
                     self.rainbow(0.001)
                 case _:
                     time.sleep(0.3)
-                    continue
 
+class CornerLed(FigureLedLine):
+    def __init__(self,*args):
+        if len(args) != 2:
+                raise Exception("Triangle must have 3 elements")
+        super().__init__(args)
 
 class TriangleLed(FigureLedLine):
     def __init__(self,*args):
