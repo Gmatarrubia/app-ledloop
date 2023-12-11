@@ -37,6 +37,8 @@ class FigureLedLine(threading.Thread):
                 counter = counter + 1
         return
 
+    ### Mode's functions at figures level ###
+
     def fill(self, r, g, b):
         for line in self.ledLinesList:
             line.fill(r, g, b)
@@ -61,6 +63,16 @@ class FigureLedLine(threading.Thread):
                 pix[2].neopixel[pix[1]] = wheel(pix[2].neopixel.byteorder, pixel_index & 255)
             time.sleep(wait)
 
+    def pulse(self, wait):
+        long = self.ledLinesList[0].lenght
+        for led in range(long):
+            self.off()
+            for line in self.ledLinesList:
+                line.setLed(led, 100,100,100)
+            time.sleep(wait)
+        self.off()
+        time.sleep(wait*5)
+
     def show(self):
         for line in self.ledLinesList:
             line.neopixel.show()
@@ -68,6 +80,7 @@ class FigureLedLine(threading.Thread):
     def mode(self, work_mode):
         self.activeMode = work_mode
 
+    ### Thread main loop ###
     def run(self):
         while True:
             match self.activeMode["mode"]:
@@ -84,6 +97,8 @@ class FigureLedLine(threading.Thread):
                     self.rainbow(0.001)
                 case "snake":
                     self.snake(0.02)
+                case "pulse":
+                    self.pulse(0.05)
                 case _:
                     time.sleep(0.45)
 

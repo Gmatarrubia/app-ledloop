@@ -12,6 +12,9 @@ class LedLine():
         if reverse:
             self.index = [*reversed(self.index)]
 
+    def setLed(self, index, r, g,b):
+        self.neopixel[self.index[index]] = (r, g, b)
+
     def fill(self, r, g, b):
         for led in self.index:
             self.neopixel[led] = (r, g, b)
