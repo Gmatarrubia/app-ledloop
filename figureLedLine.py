@@ -5,12 +5,6 @@ from animationHelpers import wheel
 from ledLine import LedLine
 from globals import *
 
-class Figure(IntEnum):
-    Corner = 2
-    Triangle = 3
-    Square = 4
-    Hexagon = 6
-
 class FigureLedLine(threading.Thread):
 
     def __init__(self, ledLineList):
@@ -48,8 +42,7 @@ class FigureLedLine(threading.Thread):
             line.fill(r, g, b)
 
     def off(self):
-        for line in self.ledLinesList:
-            line.fill(0, 0, 0)
+        self.fill(0,0,0)
 
     def snake(self, wait):
         for pix in self.indexPlain:
@@ -62,8 +55,6 @@ class FigureLedLine(threading.Thread):
             time.sleep(wait)
 
     def rainbow(self, wait):
-        #for line in self.ledLinesList:
-        #    line.rainbow(wait)
         for j in range(255):
             for pix in self.indexPlain:
                 pixel_index = (pix[0] * 256 // len(self.indexPlain)) + j
@@ -85,13 +76,15 @@ class FigureLedLine(threading.Thread):
                             self.activeMode["args"]["g"],
                             self.activeMode["args"]["b"])
                     self.fill(*color)
+                    time.sleep(0.45)
                 case "off":
                     self.off()
+                    time.sleep(0.45)
                 case "rainbow":
                     self.rainbow(0.001)
                 case "snake":
                     self.snake(0.02)
                 case _:
-                    time.sleep(0.3)
+                    time.sleep(0.45)
 
 

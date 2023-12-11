@@ -25,6 +25,7 @@ def main():
         #Start thread again
         myFigures["complete"].start()
         myFigures["core"].start()
+        print("Figures running!")
 
     def switch_on_core():
         myFigures["core"].fill(0,90,20)
@@ -34,7 +35,7 @@ def main():
         myFigures["core"].fill(0,0,0)
         update_all()
 
-    # Test led lights
+    # Welcome led lights
     loop_cycles = 5
     for cycles in range(loop_cycles):
         switch_on_core()
@@ -50,9 +51,9 @@ def main():
     try:
         lastModTime = os.stat(WORK_MODE_JSON_FILE).st_mtime
         currentModTime = lastModTime
-        print(str(lastModTime))
         while True:
-            time.sleep(0.01)
+            # 50 fps
+            time.sleep(0.02)
             currentModTime = os.stat(WORK_MODE_JSON_FILE).st_mtime
             if (currentModTime == lastModTime):
                 update_all()
