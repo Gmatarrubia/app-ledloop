@@ -1,5 +1,7 @@
 import os
 import json
+import time
+import threading
 import board
 import neopixel
 
@@ -29,6 +31,16 @@ pixelSceneList.append(PIXELS_2)
 def update_all():
     for pixel in pixelSceneList:
         pixel.show()
+
+def run_update_all_thread(wait):
+    def update_all_thread(wait):
+        while True:
+            update_all()
+            time.sleep(wait)
+    threadArgs = [wait]
+    updateThread = threading.Thread(target=update_all_thread, args=threadArgs)
+    updateThread.daemon = True
+    updateThread.start()
 
 # Json utils
 MAP_JSON_FILE = os.path.join(APP_PATH,"led-map.json")

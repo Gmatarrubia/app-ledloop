@@ -47,16 +47,18 @@ def main():
     update_mode_work()
     # Start runnning figures
     run_figures()
+    # Start update_all() thread
+    # FPS = 50 -> 1/50 = 0.02
+    run_update_all_thread(0.02)
+
 
     try:
         lastModTime = os.stat(WORK_MODE_JSON_FILE).st_mtime
         currentModTime = lastModTime
         while True:
-            # 50 fps
-            time.sleep(0.02)
             currentModTime = os.stat(WORK_MODE_JSON_FILE).st_mtime
             if (currentModTime == lastModTime):
-                update_all()
+                time.sleep(0.5)
                 continue
             time.sleep(0.5)
             lastModTime = currentModTime
