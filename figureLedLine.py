@@ -1,6 +1,5 @@
 import time
 import threading
-from enum import IntEnum
 from animationHelpers import wheel
 from ledLine import LedLine
 from globals import *
@@ -56,10 +55,11 @@ class FigureLedLine(threading.Thread):
             pix[2].neopixel[pix[1]] = (100,100,100)
             time.sleep(wait)
 
-    def rainbow(self, wait):
+    def rainbow(self, wait, active_wheel):
+        active_wheel = 1 if active_wheel else 0
         for j in range(255):
             for pix in self.indexPlain:
-                pixel_index = (pix[0] * 256 // len(self.indexPlain)) + j
+                pixel_index = (pix[active_wheel] * 256 // len(self.indexPlain)) + j
                 pix[2].neopixel[pix[1]] = wheel(pix[2].neopixel.byteorder, pixel_index & 255)
             time.sleep(wait)
 
@@ -94,7 +94,9 @@ class FigureLedLine(threading.Thread):
                     self.off()
                     time.sleep(0.45)
                 case "rainbow":
-                    self.rainbow(0.001)
+                    self.rainbow(0.005, 0)
+                case "rainbow_wheel":
+                    self.rainbow(0.005, 1)
                 case "snake":
                     self.snake(0.02)
                 case "pulse":
