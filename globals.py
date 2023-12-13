@@ -46,8 +46,8 @@ def run_update_all_thread(wait):
 MAP_JSON_FILE = os.path.join(APP_PATH,"led-map.json")
 WORK_MODE_JSON_FILE = os.path.join(APP_PATH,"work-mode.json")
 def load_map_json():
-    with open(MAP_JSON_FILE, "r") as f:
+    with open(MAP_JSON_FILE, "r", encoding="utf-8") as f:
         return json.load(f)
 def load_mode_json():
-    with open(WORK_MODE_JSON_FILE, "r") as f:
+    with open(WORK_MODE_JSON_FILE, "r", encoding="utf-8") as f:
         return json.load(f)

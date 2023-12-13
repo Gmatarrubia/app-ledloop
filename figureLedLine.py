@@ -2,7 +2,7 @@ import time
 import threading
 from animationHelpers import wheel
 from ledLine import LedLine
-from globals import *
+import globals as gls
 
 class FigureLedLine(threading.Thread):
 
@@ -14,7 +14,7 @@ class FigureLedLine(threading.Thread):
             if isinstance(item, dict):
             # This is True when the info comes from a json file
                 # The item is single Ledline
-                my_tupla = (item["pixel"], pixelSceneDict[item["pixel"]])
+                my_tupla = (item["pixel"], gls.pixelSceneDict[item["pixel"]])
                 if int(item["first"]) < int(item["last"]):
                     self.ledLinesList.append(LedLine(my_tupla, item["first"], item["last"]))
                 else:
