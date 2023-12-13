@@ -8,8 +8,8 @@ import neopixel
 APP_PATH = os.path.dirname(os.path.realpath(__file__))
 
 # Global configuration
-LED_DATA_PIN = board.D10
-LED_DATA_PIN2 = board.D18
+LED_DATA_PIN = board.D21   # pin 40 on a raspi zero w
+LED_DATA_PIN2 = board.D18  # pin 12 on a raspi zero w
 COUNT_LED = 18
 COUNT_LED2 = 24
 RGB = neopixel.GRB
