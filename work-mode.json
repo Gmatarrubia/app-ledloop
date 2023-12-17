@@ -1,6 +1,7 @@
 {
   "complete": {
     "mode": "fill",
+    "nargs": 1,
     "args":
       {
         "r": 0,
@@ -9,6 +10,8 @@
       }
   },
   "core": {
-    "mode": "off"
+    "mode": "off",
+    "nargs": 0,
+    "args": {}
   }
 }
