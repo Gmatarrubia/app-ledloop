@@ -7,7 +7,12 @@
           "name": "fill",
           "nargs": 1,
           "args": [
-            "Color"
+            {
+              "type": "color",
+              "r": 0,
+              "g": 0,
+              "b": 0
+            }
           ]
         },
         {
@@ -39,7 +44,12 @@
           "name": "fill",
           "nargs": 1,
           "args": [
-            "color"
+            {
+              "type": "color",
+              "r": 0,
+              "g": 0,
+              "b": 0
+            }
           ]
         },
         {
@@ -61,8 +71,16 @@
           "name": "pulse",
           "nargs": 3,
           "args": [
-            "Color",
-            "speed"
+            {
+              "type": "color",
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            {
+              "type": "speed",
+              "value": 1
+            }
           ]
         }
       ]
