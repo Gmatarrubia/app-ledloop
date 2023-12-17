@@ -85,9 +85,9 @@ class FigureLedLine(threading.Thread):
         while True:
             match self.activeMode["name"]:
                 case "fill":
-                    color = (self.activeMode["args"]["r"],
-                            self.activeMode["args"]["g"],
-                            self.activeMode["args"]["b"])
+                    color = (self.activeMode["args"][0]["r"],
+                            self.activeMode["args"][0]["g"],
+                            self.activeMode["args"][0]["b"])
                     self.fill(*color)
                     time.sleep(0.45)
                 case "off":
