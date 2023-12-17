@@ -83,7 +83,7 @@ class FigureLedLine(threading.Thread):
     ### Thread main loop ###
     def run(self):
         while True:
-            match self.activeMode["mode"]:
+            match self.activeMode["name"]:
                 case "fill":
                     color = (self.activeMode["args"]["r"],
                             self.activeMode["args"]["g"],
