@@ -1,5 +1,5 @@
 {
-  "complete": {
+  "core inverse": {
     "ledLinesList": [
       {
         "pixel": "PIXELS",
@@ -39,6 +39,20 @@
         "pixel": "PIXELS",
         "first": 0,
         "last": 5
+      }
+    ]
+  },
+  "complete": {
+    "ledLinesList": [
+      {
+        "pixel": "PIXELS",
+        "first": 0,
+        "last": 17
+      },
+      {
+        "pixel": "PIXELS_2",
+        "first": 0,
+        "last": 23
       }
     ]
   }

@@ -36,6 +36,16 @@ class FigureLedLine(threading.Thread):
                 counter = counter + 1
         return
 
+    def getColorFromArg(self, numArg):
+        if "r" in self.activeMode["args"][numArg]:
+            r = self.activeMode["args"][numArg]["r"]
+            g = self.activeMode["args"][numArg]["g"]
+            b = self.activeMode["args"][numArg]["b"]
+            return (r, g, b)
+        else:
+            return (100,100,100)
+
+
     ### Mode's functions at figures level ###
 
     def fill(self, r, g, b):
@@ -46,13 +56,14 @@ class FigureLedLine(threading.Thread):
         self.fill(0,0,0)
 
     def snake(self, wait):
+        r, g, b = self.getColorFromArg(0)
         for pix in self.indexPlain:
             self.off()
-            pix[2].neopixel[pix[1]] = (100,100,100)
+            pix[2].neopixel[pix[1]] = (r, g, b)
             time.sleep(wait)
         for pix in reversed(self.indexPlain):
             self.off()
-            pix[2].neopixel[pix[1]] = (100,100,100)
+            pix[2].neopixel[pix[1]] = (r, g, b)
             time.sleep(wait)
 
     def rainbow(self, wait, active_wheel):
@@ -64,11 +75,12 @@ class FigureLedLine(threading.Thread):
             time.sleep(wait)
 
     def pulse(self, wait):
+        r, g, b = self.getColorFromArg(0)
         long = self.ledLinesList[0].lenght
         for led in range(long):
             self.off()
             for line in self.ledLinesList:
-                line.setLed(led, 100,100,100)
+                line.setLed(led, r, g, b)
             time.sleep(wait)
         self.off()
         time.sleep(wait*5)

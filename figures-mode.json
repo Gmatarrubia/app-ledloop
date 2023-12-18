@@ -1,7 +1,7 @@
 {
   "figures": [
     {
-      "name": "complete",
+      "name": "core inverse",
       "modes": [
         {
           "name": "fill",
@@ -22,8 +22,15 @@
         },
         {
           "name": "snake",
-          "nargs": 0,
-          "args": []
+          "nargs": 1,
+          "args": [
+            {
+              "type": "color",
+              "r": 0,
+              "g": 0,
+              "b": 0
+            }
+          ]
         },
         {
           "name": "rainbow",
@@ -82,6 +89,33 @@
               "value": 1
             }
           ]
+        }
+      ]
+    },
+    {
+      "name": "complete",
+      "modes": [
+        {
+          "name": "fill",
+          "nargs": 1,
+          "args": [
+            {
+              "type": "color",
+              "r": 0,
+              "g": 0,
+              "b": 0
+            }
+          ]
+        },
+        {
+          "name": "off",
+          "nargs": 0,
+          "args": []
+        },
+        {
+          "name": "rainbow",
+          "nargs": 0,
+          "args": []
         }
       ]
     }

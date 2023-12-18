@@ -1,5 +1,5 @@
 {
-  "complete": {
+  "core inverse": {
     "name": "fill",
     "nargs": 1,
     "args":
