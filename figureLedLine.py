@@ -9,7 +9,7 @@ class FigureLedLine(threading.Thread):
     def __init__(self, ledLineList):
         self.ledLinesList = []
         self.indexPlain = []
-        self.activeMode = ""
+        self.activeMode = {"name" : "default"}
         for item in ledLineList:
             if isinstance(item, dict):
             # This is True when the info comes from a json file

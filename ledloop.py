@@ -15,10 +15,18 @@ def main():
 
     def update_mode_work():
         print("Updating mode work...")
+        # Switch off all pixels
+        for pixel in gls.pixelSceneList:
+            pixel.fill((0,0,0))
+        gls.update_all()
+        # Set default mode for all figures
+        for figure in myFigures.items():
+            myFigures[figure[0]].mode({"name": "default"})
         # Read new json values
         work_mode_json = gls.load_mode_json()
-        myFigures["complete"].mode(work_mode_json["complete"])
-        myFigures["core"].mode(work_mode_json["core"])
+        # Apply new modes
+        for figure in work_mode_json.items():
+            myFigures[figure[0]].mode(work_mode_json[figure[0]])
         print("Succesfuly mode work updated.")
 
     def run_figures():
