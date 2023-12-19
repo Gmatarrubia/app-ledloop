@@ -61,8 +61,9 @@ class FigureLedLine(threading.Thread):
     def off(self):
         self.fill(0,0,0)
 
-    def snake(self, wait):
+    def snake(self):
         r, g, b = self.getColorFromArg(0)
+        wait = self.getDoubleFromArg(1)
         for pix in self.indexPlain:
             self.off()
             pix[2].neopixel[pix[1]] = (r, g, b)
@@ -125,7 +126,7 @@ class FigureLedLine(threading.Thread):
                 case "rainbow_wheel":
                     self.rainbow(0.005, 1)
                 case "snake":
-                    self.snake(0.02)
+                    self.snake()
                 case "pulse":
                     self.pulse()
                 case "christmas":
