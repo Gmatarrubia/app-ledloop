@@ -1,77 +1,10 @@
 {
   "figures": [
     {
-      "name": "test scroll",
-      "modes": [
-        {
-          "name": "fill",
-          "nargs": 1,
-          "args": [
-            {
-              "type": "color",
-              "r": 0,
-              "g": 0,
-              "b": 0
-            }
-          ]
-        },
-        {
-          "name": "off",
-          "nargs": 0,
-          "args": []
-        }
-      ]
-    },
-    {
-      "name": "core inverse",
-      "modes": [
-        {
-          "name": "fill",
-          "nargs": 1,
-          "args": [
-            {
-              "type": "color",
-              "r": 0,
-              "g": 0,
-              "b": 0
-            }
-          ]
-        },
-        {
-          "name": "off",
-          "nargs": 0,
-          "args": []
-        },
-        {
-          "name": "snake",
-          "nargs": 1,
-          "args": [
-            {
-              "type": "color",
-              "r": 0,
-              "g": 0,
-              "b": 0
-            }
-          ]
-        },
-        {
-          "name": "rainbow",
-          "nargs": 0,
-          "args": []
-        },
-        {
-          "name": "rainbow_wheel",
-          "nargs": 0,
-          "args": []
-        }
-      ]
-    },
-    {
       "name": "core",
       "modes": [
         {
           "name": "fill",
-          "nargs": 1,
           "args": [
             {
               "type": "color",
@@ -83,22 +16,18 @@
         },
         {
           "name": "off",
-          "nargs": 0,
           "args": []
         },
         {
           "name": "rainbow",
-          "nargs": 0,
           "args": []
         },
         {
           "name": "rainbow_wheel",
-          "nargs": 0,
           "args": []
         },
         {
           "name": "pulse",
-          "nargs": 3,
           "args": [
             {
               "type": "color",
@@ -108,18 +37,17 @@
             },
             {
               "type": "speed",
-              "value": 1
+              "value": 0.07
             }
           ]
         }
       ]
     },
     {
-      "name": "complete",
+      "name": "core inverse",
       "modes": [
         {
           "name": "fill",
-          "nargs": 1,
           "args": [
             {
               "type": "color",
@@ -131,12 +59,53 @@
         },
         {
           "name": "off",
-          "nargs": 0,
+          "args": []
+        },
+        {
+          "name": "snake",
+          "args": [
+            {
+              "type": "color",
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            {
+              "type": "speed",
+              "value": 0.05
+            }
+          ]
+        },
+        {
+          "name": "rainbow",
+          "args": []
+        },
+        {
+          "name": "rainbow_wheel",
+          "args": []
+        }
+      ]
+    },
+    {
+      "name": "complete",
+      "modes": [
+        {
+          "name": "fill",
+          "args": [
+            {
+              "type": "color",
+              "r": 0,
+              "g": 0,
+              "b": 0
+            }
+          ]
+        },
+        {
+          "name": "off",
           "args": []
         },
         {
           "name": "rainbow",
-          "nargs": 0,
           "args": []
         }
       ]

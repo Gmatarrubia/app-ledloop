@@ -1,7 +1,6 @@
 {
   "core inverse": {
     "name": "fill",
-    "nargs": 1,
     "args":
     [
       {
@@ -14,7 +13,6 @@
   },
   "core": {
     "name": "off",
-    "nargs": 0,
     "args": [
       {}
     ]
