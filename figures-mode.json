@@ -1,6 +1,28 @@
 {
   "figures": [
     {
+      "name": "test scroll",
+      "modes": [
+        {
+          "name": "fill",
+          "nargs": 1,
+          "args": [
+            {
+              "type": "color",
+              "r": 0,
+              "g": 0,
+              "b": 0
+            }
+          ]
+        },
+        {
+          "name": "off",
+          "nargs": 0,
+          "args": []
+        }
+      ]
+    },
+    {
       "name": "core inverse",
       "modes": [
         {

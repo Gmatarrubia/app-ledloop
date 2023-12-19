@@ -45,6 +45,12 @@ class FigureLedLine(threading.Thread):
         else:
             return (100,100,100)
 
+    def getDoubleFromArg(self, numArg):
+        if "value" in self.activeMode["args"][numArg]:
+            return self.activeMode["args"][numArg]["value"]
+        else:
+            return 0.5
+
 
     ### Mode's functions at figures level ###
 
@@ -74,8 +80,9 @@ class FigureLedLine(threading.Thread):
                 pix[2].neopixel[pix[1]] = wheel(pix[2].neopixel.byteorder, pixel_index & 255)
             time.sleep(wait)
 
-    def pulse(self, wait):
+    def pulse(self):
         r, g, b = self.getColorFromArg(0)
+        wait = self.getDoubleFromArg(1)
         long = self.ledLinesList[0].lenght
         for led in range(long):
             self.off()
@@ -112,7 +119,7 @@ class FigureLedLine(threading.Thread):
                 case "snake":
                     self.snake(0.02)
                 case "pulse":
-                    self.pulse(0.05)
+                    self.pulse()
                 case _:
                     time.sleep(0.45)
 
