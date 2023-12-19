@@ -97,7 +97,7 @@ class FigureLedLine(threading.Thread):
         ledList = list(range(0, long, 6))
         for color in range(3):
             self.off()
-            for n in range (3):
+            for n in range (0, 5, 2):
                 for num in ledList:
                     self.indexPlain[num+n][2].neopixel[self.indexPlain[num+n][1]] = self.getColorFromArg(color)
                 time.sleep(0.5)
