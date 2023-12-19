@@ -45,14 +45,14 @@
   "complete": {
     "ledLinesList": [
       {
-        "pixel": "PIXELS",
-        "first": 0,
-        "last": 17
-      },
-      {
         "pixel": "PIXELS_2",
         "first": 0,
         "last": 23
+      },
+      {
+        "pixel": "PIXELS",
+        "first": 17,
+        "last": 0
       }
     ]
   }

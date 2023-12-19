@@ -107,6 +107,29 @@
         {
           "name": "rainbow",
           "args": []
+        },
+        {
+          "name": "christmas",
+          "args": [
+            {
+              "type": "color",
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            {
+              "type": "color",
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            {
+              "type": "color",
+              "r": 0,
+              "g": 0,
+              "b": 0
+            }
+          ]
         }
       ]
     }

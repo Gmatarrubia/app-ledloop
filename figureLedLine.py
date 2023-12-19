@@ -92,6 +92,16 @@ class FigureLedLine(threading.Thread):
         self.off()
         time.sleep(wait*5)
 
+    def christmas(self):
+        long = len(self.indexPlain)
+        ledList = list(range(0, long, 6))
+        for color in range(3):
+            self.off()
+            for n in range (3):
+                for num in ledList:
+                    self.indexPlain[num+n][2].neopixel[self.indexPlain[num+n][1]] = self.getColorFromArg(color)
+                time.sleep(0.5)
+
     def show(self):
         for line in self.ledLinesList:
             line.neopixel.show()
@@ -104,9 +114,7 @@ class FigureLedLine(threading.Thread):
         while True:
             match self.activeMode["name"]:
                 case "fill":
-                    color = (self.activeMode["args"][0]["r"],
-                            self.activeMode["args"][0]["g"],
-                            self.activeMode["args"][0]["b"])
+                    color = self.getColorFromArg(0)
                     self.fill(*color)
                     time.sleep(0.45)
                 case "off":
@@ -120,6 +128,8 @@ class FigureLedLine(threading.Thread):
                     self.snake(0.02)
                 case "pulse":
                     self.pulse()
+                case "christmas":
+                    self.christmas()
                 case _:
                     time.sleep(0.45)
 
