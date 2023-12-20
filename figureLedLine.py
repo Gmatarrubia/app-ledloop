@@ -9,8 +9,9 @@ class FigureLedLine(threading.Thread):
     def __init__(self, ledLineList):
         self.ledLinesList = []
         self.indexPlain = []
+        self.figureName = ledLineList["name"]
         self.activeMode = {"name" : "default"}
-        for item in ledLineList:
+        for item in ledLineList["ledLinesList"]:
             if isinstance(item, dict):
             # This is True when the info comes from a json file
                 # The item is single Ledline
@@ -25,7 +26,6 @@ class FigureLedLine(threading.Thread):
         self.lenght = len(self.ledLinesList)
         threading.Thread.__init__(self)
         threading.Thread.daemon = True
-        #self.indexPlain = self.getIndexPlain()
         self.getIndexPlain()
 
     def getIndexPlain(self):

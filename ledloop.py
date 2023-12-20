@@ -4,14 +4,15 @@
 
 import os
 import time
-from figuresDict import FiguresDict
 import globals as gls
+from figureLedLine import FigureLedLine
 
 def main():
 
     led_map_json = gls.load_map_json()
-    figuresDict = FiguresDict(led_map_json)
-    myFigures = figuresDict.figuresDict
+    myFigures = []
+    for figure in led_map_json["figures"]:
+        myFigures.append(FigureLedLine(figure))
 
     def update_mode_work():
         print("Updating mode work...")
@@ -20,25 +21,26 @@ def main():
             pixel.fill((0,0,0))
         gls.update_all()
         # Set default mode for all figures
-        for figure in myFigures.items():
-            myFigures[figure[0]].mode({"name": "default"})
+        for figure in myFigures:
+            figure.mode({"name": "default"})
         # Read new json values
         work_mode_json = gls.load_mode_json()
         # Apply new modes
-        for figure in work_mode_json.items():
-            myFigures[figure[0]].mode(work_mode_json[figure[0]])
+        for figure in myFigures:
+            if figure.figureName in work_mode_json.keys():
+                figure.mode(work_mode_json[figure.figureName])
         print("Succesfuly mode work updated.")
 
     def run_figures():
         # Start animation thread
-        for figure in myFigures.items():
-            myFigures[figure[0]].start()
+        for figure in myFigures:
+            figure.start()
         print("Figures running!")
 
     def switch_lights(onOff):
         color = (0,90,20) if onOff else (0,0,0)
-        for figure in myFigures.items():
-            myFigures[figure[0]].fill(color[0], color[1], color[2])
+        for figure in myFigures:
+            figure.fill(color[0], color[1], color[2])
         gls.update_all()
 
     # Welcome led lights
