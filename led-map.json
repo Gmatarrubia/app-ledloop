@@ -1,5 +1,5 @@
 {
-  "core inverse": {
+  "horns": {
     "ledLinesList": [
       {
         "pixel": "PIXELS",
@@ -53,6 +53,35 @@
         "pixel": "PIXELS",
         "first": 17,
         "last": 0
+      }
+    ]
+  },
+  "nucleo": {
+    "ledLinesList": [
+      {
+        "pixel": "PIXELS_2",
+        "first": 5,
+        "last": 0
+      },
+      {
+        "pixel": "PIXELS_2",
+        "first": 23,
+        "last": 18
+      },
+      {
+        "pixel": "PIXELS_2",
+        "first": 6,
+        "last": 11
+      },
+      {
+        "pixel": "PIXELS",
+        "first": 17,
+        "last": 12
+      },
+      {
+        "pixel": "PIXELS",
+        "first": 0,
+        "last": 5
       }
     ]
   }
