@@ -3,215 +3,136 @@
     {
       "name": "core",
       "modes": [
-        {
-          "name": "fill",
-          "args": [
-            {
-              "type": "color",
-              "r": 0,
-              "g": 0,
-              "b": 0
-            }
-          ]
-        },
-        {
-          "name": "off",
-          "args": []
-        },
-        {
-          "name": "rainbow",
-          "args": []
-        },
-        {
-          "name": "rainbow_wheel",
-          "args": []
-        },
-        {
-          "name": "pulse",
-          "args": [
-            {
-              "type": "color",
-              "r": 0,
-              "g": 0,
-              "b": 0
-            },
-            {
-              "type": "speed",
-              "value": 0.07
-            },
-            {
-              "name": "breathing",
-              "args": [
-                {
-                  "type": "color",
-                  "r": 0,
-                  "g": 0,
-                  "b": 0
-                },
-                {
-                  "type": "speed",
-                  "value": 0.1
-                }
-              ]
-            }
-          ]
-        }
+          "fill",
+          "rainbow",
+          "rainbow_wheel",
+          "pulse",
+          "off"
       ]
     },
     {
       "name": "horns",
       "modes": [
-        {
-          "name": "fill",
-          "args": [
-            {
-              "type": "color",
-              "r": 0,
-              "g": 0,
-              "b": 0
-            }
-          ]
-        },
-        {
-          "name": "off",
-          "args": []
-        },
-        {
-          "name": "snake",
-          "args": [
-            {
-              "type": "color",
-              "r": 0,
-              "g": 0,
-              "b": 0
-            },
-            {
-              "type": "speed",
-              "value": 0.05
-            }
-          ]
-        },
-        {
-          "name": "rainbow",
-          "args": []
-        },
-        {
-          "name": "rainbow_wheel",
-          "args": []
-        },
-        {
-          "name": "breathing",
-          "args": [
-            {
-              "type": "color",
-              "r": 0,
-              "g": 0,
-              "b": 0
-            },
-            {
-              "type": "speed",
-              "value": 0.1
-            }
-          ]
-        }
+        "fill",
+        "snake",
+        "rainbow",
+        "rainbow_wheel",
+        "off"
       ]
     },
     {
       "name": "complete",
       "modes": [
-        {
-          "name": "fill",
-          "args": [
-            {
-              "type": "color",
-              "r": 0,
-              "g": 0,
-              "b": 0
-            }
-          ]
-        },
-        {
-          "name": "breathing",
-          "args": [
-            {
-              "type": "color",
-              "r": 0,
-              "g": 0,
-              "b": 0
-            },
-            {
-              "type": "speed",
-              "value": 0.1
-            }
-          ]
-        },
-        {
-          "name": "off",
-          "args": []
-        },
-        {
-          "name": "rainbow",
-          "args": []
-        },
-        {
-          "name": "christmas",
-          "args": [
-            {
-              "type": "color",
-              "r": 0,
-              "g": 0,
-              "b": 0
-            },
-            {
-              "type": "color",
-              "r": 0,
-              "g": 0,
-              "b": 0
-            },
-            {
-              "type": "color",
-              "r": 0,
-              "g": 0,
-              "b": 0
-            }
-          ]
-        }
+        "fill",
+        "rainbow",
+        "rainbow_wheel",
+        "christmas",
+        "breathing",
+        "off"
       ]
     },
     {
       "name": "nucleo",
       "modes": [
+        "fill",
+        "pulse",
+        "breathing",
+        "off"
+      ]
+    }
+  ],
+  "modes": [
+    {
+      "name": "fill",
+      "args": [
         {
-          "name": "fill",
-          "args": [
-            {
-              "type": "color",
-              "r": 0,
-              "g": 0,
-              "b": 0
-            }
-          ]
+          "type": "color",
+          "r": 0,
+          "g": 0,
+          "b": 0
+        }
+      ]
+    },
+    {
+      "name": "off",
+      "args": []
+    },
+    {
+      "name": "rainbow",
+      "args": []
+    },
+    {
+      "name": "rainbow_wheel",
+      "args": []
+    },
+    {
+      "name": "pulse",
+      "args": [
+        {
+          "type": "color",
+          "r": 0,
+          "g": 0,
+          "b": 0
         },
         {
-          "name": "off",
-          "args": []
+          "type": "speed",
+          "value": 0.07
+        }
+      ]
+    },
+    {
+      "name": "snake",
+      "args": [
+        {
+          "type": "color",
+          "r": 0,
+          "g": 0,
+          "b": 0
         },
         {
-          "name": "pulse",
-          "args": [
-            {
-              "type": "color",
-              "r": 0,
-              "g": 0,
-              "b": 0
-            },
-            {
-              "type": "speed",
-              "value": 0.07
-            }
-          ]
+          "type": "speed",
+          "value": 0.05
+        }
+      ]
+    },
+    {
+      "name": "christmas",
+      "args": [
+        {
+          "type": "color",
+          "r": 0,
+          "g": 0,
+          "b": 0
+        },
+        {
+          "type": "color",
+          "r": 0,
+          "g": 0,
+          "b": 0
+        },
+        {
+          "type": "color",
+          "r": 0,
+          "g": 0,
+          "b": 0
+        }
+      ]
+    },
+    {
+      "name": "breathing",
+      "args": [
+        {
+          "type": "color",
+          "r": 0,
+          "g": 0,
+          "b": 0
+        },
+        {
+          "type": "speed",
+          "value": 0.1
         }
       ]
     }
   ]
 }
+
