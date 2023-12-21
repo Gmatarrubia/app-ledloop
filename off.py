@@ -5,6 +5,7 @@
 import globals as gls
 
 for pixel in gls.pixelSceneList:
-    pixel.fill(0,0,0)
+    pixel.fill((0,0,0))
+gls.update_all()
 
 exit(0)
