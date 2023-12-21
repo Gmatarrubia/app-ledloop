@@ -101,6 +101,21 @@
           ]
         },
         {
+          "name": "breathing",
+          "args": [
+            {
+              "type": "color",
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            {
+              "type": "speed",
+              "value": 0.1
+            }
+          ]
+        },
+        {
           "name": "off",
           "args": []
         },

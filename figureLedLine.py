@@ -93,6 +93,21 @@ class FigureLedLine(threading.Thread):
         self.off()
         time.sleep(wait*5)
 
+    def breathing(self):
+        color = self.getColorFromArg(0)
+        wait = self.getDoubleFromArg(1)
+        self.fill(*color)
+        MAX_BRIGHTNESS = int(gls.BRIGHTNESS * 10)
+        for level in range(0, MAX_BRIGHTNESS):
+            for pixel in gls.pixelSceneList:
+                pixel.brightness = level / 10.0
+            time.sleep(wait)
+        for level in reversed(range(0, MAX_BRIGHTNESS)):
+            for pixel in gls.pixelSceneList:
+                pixel.brightness = level / 10.0
+            time.sleep(wait)
+
+
     def christmas(self):
         long = len(self.indexPlain)
         ledList = list(range(0, long, 6))
@@ -131,6 +146,8 @@ class FigureLedLine(threading.Thread):
                     self.pulse()
                 case "christmas":
                     self.christmas()
+                case "breathing":
+                    self.breathing()
                 case _:
                     time.sleep(0.45)
 
