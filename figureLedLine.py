@@ -96,16 +96,16 @@ class FigureLedLine(threading.Thread):
     def breathing(self):
         color = self.getColorFromArg(0)
         wait = self.getDoubleFromArg(1)
-        self.fill(*color)
-        MAX_BRIGHTNESS = int(gls.BRIGHTNESS * 10)
-        for level in range(0, MAX_BRIGHTNESS):
-            for pixel in gls.pixelSceneList:
-                pixel.brightness = level / 10.0
+        finalColor = ""
+        for factor in range(10):
+            finalColor = tuple(int(x * (factor/10.0)) for x in color)
+            self.fill(*finalColor)
             time.sleep(wait)
-        for level in reversed(range(0, MAX_BRIGHTNESS)):
-            for pixel in gls.pixelSceneList:
-                pixel.brightness = level / 10.0
+        for factor in reversed(range(10)):
+            finalColor = tuple(int(x * (factor/10.0)) for x in color)
+            self.fill(*finalColor)
             time.sleep(wait)
+        time.sleep(0.2)
 
 
     def christmas(self):
