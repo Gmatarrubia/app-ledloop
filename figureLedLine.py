@@ -128,27 +128,29 @@ class FigureLedLine(threading.Thread):
     ### Thread main loop ###
     def run(self):
         while True:
-            match self.activeMode["name"]:
-                case "fill":
-                    color = self.getColorFromArg(0)
-                    self.fill(*color)
-                    time.sleep(0.45)
-                case "off":
-                    self.off()
-                    time.sleep(0.45)
-                case "rainbow":
-                    self.rainbow(0.005, 0)
-                case "rainbow_wheel":
-                    self.rainbow(0.005, 1)
-                case "snake":
-                    self.snake()
-                case "pulse":
-                    self.pulse()
-                case "christmas":
-                    self.christmas()
-                case "breathing":
-                    self.breathing()
-                case _:
-                    time.sleep(0.45)
-
+            try:
+                match self.activeMode["name"]:
+                    case "fill":
+                        color = self.getColorFromArg(0)
+                        self.fill(*color)
+                        time.sleep(0.45)
+                    case "off":
+                        self.off()
+                        time.sleep(0.45)
+                    case "rainbow":
+                        self.rainbow(0.005, 0)
+                    case "rainbow_wheel":
+                        self.rainbow(0.005, 1)
+                    case "snake":
+                        self.snake()
+                    case "pulse":
+                        self.pulse()
+                    case "christmas":
+                        self.christmas()
+                    case "breathing":
+                        self.breathing()
+                    case _:
+                        time.sleep(0.45)
+            except Exception:
+                time.sleep(0.45)
 
