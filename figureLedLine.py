@@ -1,7 +1,7 @@
 import time
 import threading
 import random
-from animationHelpers import wheel
+from animationHelpers import wheel, shiftPosition
 from ledLine import LedLine
 import globals as gls
 
@@ -122,6 +122,23 @@ class FigureLedLine(threading.Thread):
                     self.indexPlain[ledNum][2].neopixel[self.indexPlain[ledNum][1]] = color2
             subListCounter = subListCounter + 1
 
+    def bicolor_wheel(self):
+        color1 = self.getColorFromArg(0)
+        color2 = self.getColorFromArg(1)
+        lenght = int(self.getDoubleFromArg(2))
+        wait = self.getDoubleFromArg(3)
+        for shifter in range(lenght * 2):
+            subListCounter = 0
+            for subListFirst in range(0, len(self.indexPlain), lenght):
+                for counter in range(lenght):
+                    ledNum =  shiftPosition(len(self.indexPlain), subListFirst+counter, shifter)
+                    if subListCounter % 2 == 0:
+                        self.indexPlain[ledNum][2].neopixel[self.indexPlain[ledNum][1]] = color1
+                    else:
+                        self.indexPlain[ledNum][2].neopixel[self.indexPlain[ledNum][1]] = color2
+                subListCounter = subListCounter + 1
+            time.sleep(wait)
+
 
     def christmas(self):
         long = len(self.indexPlain)
@@ -169,6 +186,8 @@ class FigureLedLine(threading.Thread):
                     case "bicolor":
                         self.bicolor()
                         time.sleep(0.45)
+                    case "bicolor_wheel":
+                        self.bicolor_wheel()
                     case "rainbow":
                         self.rainbow(0.005, 0)
                     case "rainbow_wheel":

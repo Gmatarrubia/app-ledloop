@@ -1,5 +1,11 @@
 import neopixel
 
+def shiftPosition(lenght, pos, delta):
+    newPos = pos + delta
+    if newPos >= lenght:
+        newPos = newPos - lenght
+    return newPos
+
 def wheel(order, pos):
     # Input a value 0 to 255 to get a color value.
     # The colours are a transition r - g - b - back to r.
