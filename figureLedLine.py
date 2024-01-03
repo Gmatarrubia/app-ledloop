@@ -1,5 +1,6 @@
 import time
 import threading
+import random
 from animationHelpers import wheel
 from ledLine import LedLine
 import globals as gls
@@ -97,15 +98,29 @@ class FigureLedLine(threading.Thread):
         color = self.getColorFromArg(0)
         wait = self.getDoubleFromArg(1)
         finalColor = ""
-        for factor in range(10):
-            finalColor = tuple(int(x * (factor/10.0)) for x in color)
+        for factor in range(20):
+            finalColor = tuple(int(x * (factor/20.0)) for x in color)
             self.fill(*finalColor)
             time.sleep(wait)
-        for factor in reversed(range(10)):
-            finalColor = tuple(int(x * (factor/10.0)) for x in color)
+        for factor in reversed(range(20)):
+            finalColor = tuple(int(x * (factor/20.0)) for x in color)
             self.fill(*finalColor)
             time.sleep(wait)
         time.sleep(0.2)
+
+    def bicolor(self):
+        color1 = self.getColorFromArg(0)
+        color2 = self.getColorFromArg(1)
+        lenght = int(self.getDoubleFromArg(2))
+        subListCounter = 0
+        for subListFirst in range(0, len(self.indexPlain), lenght):
+            for counter in range(lenght):
+                ledNum = subListFirst+counter
+                if subListCounter % 2 == 0:
+                    self.indexPlain[ledNum][2].neopixel[self.indexPlain[ledNum][1]] = color1
+                else:
+                    self.indexPlain[ledNum][2].neopixel[self.indexPlain[ledNum][1]] = color2
+            subListCounter = subListCounter + 1
 
 
     def christmas(self):
@@ -117,6 +132,20 @@ class FigureLedLine(threading.Thread):
                 for num in ledList:
                     self.indexPlain[num+n][2].neopixel[self.indexPlain[num+n][1]] = self.getColorFromArg(color)
                 time.sleep(0.5)
+
+    def shining_stars(self):
+        color = self.getColorFromArg(0)
+        self.off()
+        for factor in range(20):
+            for n in range(random.randint(3,6)):
+                finalColor = ""
+                stars = []
+                stars.append(random.randint(0, len(self.indexPlain)))
+                for star in stars:
+                    finalColor = tuple(int(x * (factor/20.0)) for x in color)
+                    self.indexPlain[star][2].neopixel[self.indexPlain[star][1]] = finalColor
+            time.sleep(0.08)
+        time.sleep(1)
 
     def show(self):
         for line in self.ledLinesList:
@@ -137,6 +166,9 @@ class FigureLedLine(threading.Thread):
                     case "off":
                         self.off()
                         time.sleep(0.45)
+                    case "bicolor":
+                        self.bicolor()
+                        time.sleep(0.45)
                     case "rainbow":
                         self.rainbow(0.005, 0)
                     case "rainbow_wheel":
@@ -149,6 +181,8 @@ class FigureLedLine(threading.Thread):
                         self.christmas()
                     case "breathing":
                         self.breathing()
+                    case "shining stars":
+                        self.shining_stars()
                     case _:
                         time.sleep(0.45)
             except Exception:
