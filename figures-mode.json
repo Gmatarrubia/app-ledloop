@@ -25,6 +25,7 @@
       "name": "complete",
       "modes": [
         "fill",
+        "bicolor",
         "rainbow",
         "rainbow_wheel",
         "christmas",
