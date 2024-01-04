@@ -27,10 +27,12 @@
       "modes": [
         "fill",
         "bicolor",
+        "bicolor_wheel",
         "rainbow",
         "rainbow_wheel",
         "christmas",
         "breathing",
+        "glitch",
         "off"
       ]
     },
@@ -79,7 +81,9 @@
           "type": "double",
           "name": "longitud",
           "delta": 1.0,
-          "value": 1.0
+          "value": 1.0,
+          "min": 1.0,
+          "max": 1000.00
         }
       ]
     },
@@ -102,13 +106,17 @@
           "type": "double",
           "name": "longitud",
           "delta": 1.0,
-          "value": 1.0
+          "value": 1.0,
+          "min": 1.0,
+          "max": 1000.00
         },
         {
           "type": "double",
           "name": "speed",
           "delta": 0.01,
-          "value": 0.1
+          "value": 0.1,
+          "min": 0.01,
+          "max": 2.00
         }
       ]
     },
@@ -133,7 +141,28 @@
           "type": "double",
           "name": "speed",
           "delta": 0.01,
-          "value": 0.07
+          "value": 0.07,
+          "min": 0.01,
+          "max": 1.00
+        }
+      ]
+    },
+    {
+      "name": "glitch",
+      "args": [
+        {
+          "type": "color",
+          "r": 0,
+          "g": 0,
+          "b": 0
+        },
+        {
+          "type": "double",
+          "name": "lenght",
+          "delta": 1.00,
+          "value": 1.00,
+          "min": 1.00,
+          "max": 6.00
         }
       ]
     },
@@ -150,7 +179,9 @@
           "type": "double",
           "name": "speed",
           "delta": 0.01,
-          "value": 0.05
+          "value": 0.05,
+          "min": 0.01,
+          "max": 2.00
         }
       ]
     },
@@ -190,7 +221,9 @@
           "type": "double",
           "name": "speed",
           "delta": 0.01,
-          "value": 0.1
+          "value": 0.1,
+          "min": 0.01,
+          "max": 0.50
         }
       ]
     },

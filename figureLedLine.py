@@ -139,7 +139,6 @@ class FigureLedLine(threading.Thread):
                 subListCounter = subListCounter + 1
             time.sleep(wait)
 
-
     def christmas(self):
         long = len(self.indexPlain)
         ledList = list(range(0, long, 6))
@@ -149,6 +148,25 @@ class FigureLedLine(threading.Thread):
                 for num in ledList:
                     self.indexPlain[num+n][2].neopixel[self.indexPlain[num+n][1]] = self.getColorFromArg(color)
                 time.sleep(0.5)
+
+    def glitch(self):
+        color = self.getColorFromArg(0)
+        glitchLenght = int(self.getDoubleFromArg(1))
+        ledsLenght = len(self.indexPlain)
+        self.fill(*color)
+        firstLed = random.randint(0, ledsLenght)
+        for flicker in range(4):
+            modColor = (0, 0, 0) if flicker % 2 == 0 else color
+            print(f'modColor: {modColor}', end="")
+            for shifter in range(glitchLenght):
+                ledNum =  shiftPosition(ledsLenght, firstLed, shifter)
+                print(f':{ledNum}', end="")
+                self.indexPlain[ledNum][2].neopixel[self.indexPlain[ledNum][1]] = modColor
+            randomFlicker = random.randint(1, 20)
+            time.sleep(randomFlicker/100)
+            print(" ")
+        randomWait = random.randint(5, 20)
+        time.sleep(randomWait/10.0)
 
     def shining_stars(self):
         color = self.getColorFromArg(0)
@@ -200,6 +218,8 @@ class FigureLedLine(threading.Thread):
                         self.christmas()
                     case "breathing":
                         self.breathing()
+                    case "glitch":
+                        self.glitch()
                     case "shining stars":
                         self.shining_stars()
                     case _:
