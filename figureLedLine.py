@@ -157,14 +157,11 @@ class FigureLedLine(threading.Thread):
         firstLed = random.randint(0, ledsLenght)
         for flicker in range(4):
             modColor = (0, 0, 0) if flicker % 2 == 0 else color
-            print(f'modColor: {modColor}', end="")
             for shifter in range(glitchLenght):
                 ledNum =  shiftPosition(ledsLenght, firstLed, shifter)
-                print(f':{ledNum}', end="")
                 self.indexPlain[ledNum][2].neopixel[self.indexPlain[ledNum][1]] = modColor
             randomFlicker = random.randint(1, 20)
             time.sleep(randomFlicker/100)
-            print(" ")
         randomWait = random.randint(5, 20)
         time.sleep(randomWait/10.0)
 
