@@ -1,7 +1,7 @@
 import time
 import threading
 import random
-from animationHelpers import wheel, shiftPosition, wave_factor
+from animationHelpers import wheel, shiftPosition
 from ledLine import LedLine
 import globals as gls
 
