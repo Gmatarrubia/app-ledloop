@@ -166,7 +166,7 @@
         },
         {
           "type": "double",
-          "name": "out mode",
+          "name": "return mode",
           "delta": 1.00,
           "value": 0.00,
           "max": 1.00,
@@ -193,7 +193,7 @@
         },
         {
           "type": "double",
-          "name": "out mode",
+          "name": "return mode",
           "delta": 1.00,
           "value": 0.00,
           "max": 1.00,
@@ -201,7 +201,7 @@
         },
         {
           "type": "double",
-          "name": "freq",
+          "name": "hz",
           "delta": 1.00,
           "value": 15.00,
           "min": 1.00,

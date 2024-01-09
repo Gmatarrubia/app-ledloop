@@ -103,16 +103,11 @@ class FigureLedLine(threading.Thread):
             for line in self.ledLinesList:
                 line.setLed(led, *color)
             time.sleep(wait)
-        if out_mode == 0:
-            for led in range(long):
-                for line in self.ledLinesList:
-                    line.setLed(led, 0, 0, 0)
-                time.sleep(wait)
-        else:
-            for led in reversed(range(long)):
-                for line in self.ledLinesList:
-                    line.setLed(led, 0, 0, 0)
-                time.sleep(wait)
+        fade_out_list = range(long) if out_mode == 0 else reversed(range(long))
+        for led in fade_out_list:
+            for line in self.ledLinesList:
+                line.setLed(led, 0, 0, 0)
+            time.sleep(wait)
         self.off()
         time.sleep(wait*5)
 
@@ -168,14 +163,10 @@ class FigureLedLine(threading.Thread):
         for pix in self.indexPlain:
             pix[2].neopixel[pix[1]] = color
             time.sleep(wait)
-        if revert_mode == 0:
-            for pix in self.indexPlain:
-                pix[2].neopixel[pix[1]] = (0,0,0)
-                time.sleep(wait)
-        else:
-            for pix in reversed(self.indexPlain):
-                pix[2].neopixel[pix[1]] = (0,0,0)
-                time.sleep(wait)
+        fade_out_list = self.indexPlain if revert_mode == 0 else reversed(self.indexPlain)
+        for pix in fade_out_list:
+            pix[2].neopixel[pix[1]] = (0,0,0)
+            time.sleep(wait)
 
     def christmas(self):
         long = len(self.indexPlain)
