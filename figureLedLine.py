@@ -1,7 +1,7 @@
 import time
 import threading
 import random
-from animationHelpers import wheel, shiftPosition
+from animationHelpers import wheel, shiftPosition, wave_factor
 from ledLine import LedLine
 import globals as gls
 
@@ -62,7 +62,7 @@ class FigureLedLine(threading.Thread):
     def off(self):
         self.fill(0,0,0)
 
-    def snake(self):
+    def pang(self):
         r, g, b = self.getColorFromArg(0)
         wait = self.getDoubleFromArg(1)
         for pix in self.indexPlain:
@@ -139,6 +139,16 @@ class FigureLedLine(threading.Thread):
                 subListCounter = subListCounter + 1
             time.sleep(wait)
 
+    def fill_in_out(self):
+        color = self.getColorFromArg(0)
+        wait = 1/self.getDoubleFromArg(1)
+        for pix in self.indexPlain:
+            pix[2].neopixel[pix[1]] = color
+            time.sleep(wait)
+        for pix in self.indexPlain:
+            pix[2].neopixel[pix[1]] = (0,0,0)
+            time.sleep(wait)
+
     def christmas(self):
         long = len(self.indexPlain)
         ledList = list(range(0, long, 6))
@@ -207,8 +217,8 @@ class FigureLedLine(threading.Thread):
                         self.rainbow(0.005, 0)
                     case "rainbow_wheel":
                         self.rainbow(0.005, 1)
-                    case "snake":
-                        self.snake()
+                    case "pang":
+                        self.pang()
                     case "pulse":
                         self.pulse()
                     case "christmas":
@@ -217,6 +227,8 @@ class FigureLedLine(threading.Thread):
                         self.breathing()
                     case "glitch":
                         self.glitch()
+                    case "fill_in_out":
+                        self.fill_in_out()
                     case "shining stars":
                         self.shining_stars()
                     case _:

@@ -80,13 +80,13 @@
         },
         {
           "pixel": "PIXELS",
-          "first": 17,
-          "last": 12
+          "first": 0,
+          "last": 5
         },
         {
           "pixel": "PIXELS",
-          "first": 0,
-          "last": 5
+          "first": 17,
+          "last": 12
         }
       ]
     }

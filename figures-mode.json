@@ -4,9 +4,11 @@
       "name": "core",
       "modes": [
           "fill",
+          "breathing",
           "rainbow",
           "rainbow_wheel",
           "pulse",
+          "glitch",
           "off"
       ]
     },
@@ -16,7 +18,8 @@
         "fill",
         "bicolor",
         "bicolor_wheel",
-        "snake",
+        "fill_in_out",
+        "pang",
         "rainbow",
         "rainbow_wheel",
         "off"
@@ -31,6 +34,7 @@
         "rainbow",
         "rainbow_wheel",
         "christmas",
+        "fill_in_out",
         "breathing",
         "glitch",
         "off"
@@ -41,6 +45,8 @@
       "modes": [
         "fill",
         "pulse",
+        "pang",
+        "fill_in_out",
         "breathing",
         "off"
       ]
@@ -148,6 +154,25 @@
       ]
     },
     {
+      "name": "fill_in_out",
+      "args": [
+        {
+          "type": "color",
+          "r": 0,
+          "g": 0,
+          "b": 0
+        },
+        {
+          "type": "double",
+          "name": "freq",
+          "delta": 1.00,
+          "value": 15.00,
+          "min": 1.00,
+          "max": 24.00
+        }
+      ]
+    },
+    {
       "name": "glitch",
       "args": [
         {
@@ -167,7 +192,7 @@
       ]
     },
     {
-      "name": "snake",
+      "name": "pang",
       "args": [
         {
           "type": "color",

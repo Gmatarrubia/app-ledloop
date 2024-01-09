@@ -1,10 +1,16 @@
 import neopixel
+from math import sin, pi
 
 def shiftPosition(lenght, pos, delta):
     newPos = pos + delta
     if newPos >= lenght:
         newPos = newPos - lenght
     return newPos
+
+def wave_factor(lenght, pos):
+    degrees = 180 * pos / lenght
+    radians = degrees * ( pi / 180.0 )
+    return sin(radians)
 
 def wheel(order, pos):
     # Input a value 0 to 255 to get a color value.
