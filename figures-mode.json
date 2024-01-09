@@ -8,6 +8,7 @@
           "rainbow",
           "rainbow_wheel",
           "pulse",
+          "pulse_fill_in_out",
           "glitch",
           "off"
       ]
@@ -45,6 +46,7 @@
       "modes": [
         "fill",
         "pulse",
+        "pulse_fill_in_out",
         "pang",
         "fill_in_out",
         "breathing",
@@ -154,6 +156,33 @@
       ]
     },
     {
+      "name": "pulse_fill_in_out",
+      "args": [
+        {
+          "type": "color",
+          "r": 0,
+          "g": 0,
+          "b": 0
+        },
+        {
+          "type": "double",
+          "name": "out mode",
+          "delta": 1.00,
+          "value": 0.00,
+          "max": 1.00,
+          "min": 0.00
+        },
+        {
+          "type": "double",
+          "name": "speed",
+          "delta": 0.01,
+          "value": 0.07,
+          "min": 0.01,
+          "max": 1.00
+        }
+      ]
+    },
+    {
       "name": "fill_in_out",
       "args": [
         {
@@ -161,6 +190,14 @@
           "r": 0,
           "g": 0,
           "b": 0
+        },
+        {
+          "type": "double",
+          "name": "out mode",
+          "delta": 1.00,
+          "value": 0.00,
+          "max": 1.00,
+          "min": 0.00
         },
         {
           "type": "double",

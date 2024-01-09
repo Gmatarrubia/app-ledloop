@@ -94,6 +94,28 @@ class FigureLedLine(threading.Thread):
         self.off()
         time.sleep(wait*5)
 
+    def pulse_fill_in_out(self):
+        color = self.getColorFromArg(0)
+        out_mode = self.getDoubleFromArg(1)
+        wait = self.getDoubleFromArg(2)
+        long = self.ledLinesList[0].lenght
+        for led in range(long):
+            for line in self.ledLinesList:
+                line.setLed(led, *color)
+            time.sleep(wait)
+        if out_mode == 0:
+            for led in range(long):
+                for line in self.ledLinesList:
+                    line.setLed(led, 0, 0, 0)
+                time.sleep(wait)
+        else:
+            for led in reversed(range(long)):
+                for line in self.ledLinesList:
+                    line.setLed(led, 0, 0, 0)
+                time.sleep(wait)
+        self.off()
+        time.sleep(wait*5)
+
     def breathing(self):
         color = self.getColorFromArg(0)
         wait = self.getDoubleFromArg(1)
@@ -141,13 +163,19 @@ class FigureLedLine(threading.Thread):
 
     def fill_in_out(self):
         color = self.getColorFromArg(0)
-        wait = 1/self.getDoubleFromArg(1)
+        revert_mode = self.getDoubleFromArg(1)
+        wait = 1/self.getDoubleFromArg(2)
         for pix in self.indexPlain:
             pix[2].neopixel[pix[1]] = color
             time.sleep(wait)
-        for pix in self.indexPlain:
-            pix[2].neopixel[pix[1]] = (0,0,0)
-            time.sleep(wait)
+        if revert_mode == 0:
+            for pix in self.indexPlain:
+                pix[2].neopixel[pix[1]] = (0,0,0)
+                time.sleep(wait)
+        else:
+            for pix in reversed(self.indexPlain):
+                pix[2].neopixel[pix[1]] = (0,0,0)
+                time.sleep(wait)
 
     def christmas(self):
         long = len(self.indexPlain)
@@ -221,6 +249,8 @@ class FigureLedLine(threading.Thread):
                         self.pang()
                     case "pulse":
                         self.pulse()
+                    case "pulse_fill_in_out":
+                        self.pulse_fill_in_out()
                     case "christmas":
                         self.christmas()
                     case "breathing":
