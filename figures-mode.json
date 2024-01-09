@@ -38,6 +38,8 @@
         "fill_in_out",
         "breathing",
         "glitch",
+        "shining stars",
+        "fire",
         "off"
       ]
     },
@@ -68,6 +70,10 @@
     },
     {
       "name": "off",
+      "args": []
+    },
+    {
+      "name": "fire",
       "args": []
     },
     {

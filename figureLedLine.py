@@ -196,17 +196,19 @@ class FigureLedLine(threading.Thread):
 
     def shining_stars(self):
         color = self.getColorFromArg(0)
-        self.off()
-        for factor in range(20):
-            for n in range(random.randint(3,6)):
-                finalColor = ""
-                stars = []
-                stars.append(random.randint(0, len(self.indexPlain)))
-                for star in stars:
-                    finalColor = tuple(int(x * (factor/20.0)) for x in color)
-                    self.indexPlain[star][2].neopixel[self.indexPlain[star][1]] = finalColor
-            time.sleep(0.08)
-        time.sleep(1)
+        ledNum = random.randint(0, len(self.indexPlain)-1)
+        finalColor = (0,0,0)
+        if self.indexPlain[ledNum][2].neopixel[self.indexPlain[ledNum][1]] == [0,0,0]:
+            finalColor = color
+        self.indexPlain[ledNum][2].neopixel[self.indexPlain[ledNum][1]] = finalColor
+        time.sleep(0.02)
+
+    def fire(self):
+        fireColors = [[255,0,0],[188,57,0],[200, 200, 0],[0,0,0]]
+        ledNum = random.randint(0, len(self.indexPlain)-1)
+        finalColorIndex = random.randint(0, len(fireColors)-1)
+        self.indexPlain[ledNum][2].neopixel[self.indexPlain[ledNum][1]] = fireColors[finalColorIndex]
+        time.sleep(0.02)
 
     def show(self):
         for line in self.ledLinesList:
@@ -252,8 +254,11 @@ class FigureLedLine(threading.Thread):
                         self.fill_in_out()
                     case "shining stars":
                         self.shining_stars()
+                    case "fire":
+                        self.fire()
                     case _:
                         time.sleep(0.45)
             except Exception:
+                #print("Exception managed")
                 time.sleep(0.45)
 
