@@ -63,15 +63,16 @@ class FigureLedLine(threading.Thread):
         self.fill(0,0,0)
 
     def pang(self):
-        r, g, b = self.getColorFromArg(0)
-        wait = self.getDoubleFromArg(1)
+        color = self.getColorFromArg(0)
+        background_color = self.getColorFromArg(1)
+        wait = 1.00/self.getDoubleFromArg(2)
         for pix in self.indexPlain:
-            self.off()
-            pix[2].neopixel[pix[1]] = (r, g, b)
+            self.fill(*background_color)
+            pix[2].neopixel[pix[1]] = color
             time.sleep(wait)
         for pix in reversed(self.indexPlain):
-            self.off()
-            pix[2].neopixel[pix[1]] = (r, g, b)
+            self.fill(*background_color)
+            pix[2].neopixel[pix[1]] = color
             time.sleep(wait)
 
     def rainbow(self, wait, active_wheel):
@@ -83,21 +84,23 @@ class FigureLedLine(threading.Thread):
             time.sleep(wait)
 
     def pulse(self):
-        r, g, b = self.getColorFromArg(0)
-        wait = self.getDoubleFromArg(1)
+        color = self.getColorFromArg(0)
+        background_color = self.getColorFromArg(1)
+        wait = 1.00/self.getDoubleFromArg(2)
         long = self.ledLinesList[0].lenght
         for led in range(long):
-            self.off()
+            self.fill(*background_color)
             for line in self.ledLinesList:
-                line.setLed(led, r, g, b)
+                line.setLed(led, *color)
             time.sleep(wait)
-        self.off()
+        self.fill(*background_color)
         time.sleep(wait*5)
 
     def pulse_fill_in_out(self):
         color = self.getColorFromArg(0)
-        out_mode = self.getDoubleFromArg(1)
-        wait = self.getDoubleFromArg(2)
+        background_color = self.getColorFromArg(1)
+        out_mode = self.getDoubleFromArg(2)
+        wait = 1.00/self.getDoubleFromArg(3)
         long = self.ledLinesList[0].lenght
         for led in range(long):
             for line in self.ledLinesList:
@@ -106,9 +109,9 @@ class FigureLedLine(threading.Thread):
         fade_out_list = range(long) if out_mode == 0 else reversed(range(long))
         for led in fade_out_list:
             for line in self.ledLinesList:
-                line.setLed(led, 0, 0, 0)
+                line.setLed(led, *background_color)
             time.sleep(wait)
-        self.off()
+        self.fill(*background_color)
         time.sleep(wait*5)
 
     def breathing(self):

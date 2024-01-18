@@ -152,18 +152,30 @@
           "b": 0
         },
         {
+          "type": "color",
+          "r": 0,
+          "g": 0,
+          "b": 0
+        },
+        {
           "type": "double",
-          "name": "speed",
-          "delta": 0.01,
-          "value": 0.07,
-          "min": 0.01,
-          "max": 1.00
+          "name": "hz",
+          "delta": 1.00,
+          "value": 15.00,
+          "min": 1.00,
+          "max": 24.00
         }
       ]
     },
     {
       "name": "pulse_fill_in_out",
       "args": [
+        {
+          "type": "color",
+          "r": 0,
+          "g": 0,
+          "b": 0
+        },
         {
           "type": "color",
           "r": 0,
@@ -180,11 +192,11 @@
         },
         {
           "type": "double",
-          "name": "speed",
-          "delta": 0.01,
-          "value": 0.07,
-          "min": 0.01,
-          "max": 1.00
+          "name": "hz",
+          "delta": 1.00,
+          "value": 15.00,
+          "min": 1.00,
+          "max": 24.00
         }
       ]
     },
@@ -244,12 +256,18 @@
           "b": 0
         },
         {
+          "type": "color",
+          "r": 0,
+          "g": 0,
+          "b": 0
+        },
+        {
           "type": "double",
-          "name": "speed",
-          "delta": 0.01,
-          "value": 0.05,
-          "min": 0.01,
-          "max": 2.00
+          "name": "hz",
+          "delta": 1.00,
+          "value": 20.00,
+          "min": 1.00,
+          "max": 30.00
         }
       ]
     },
